@@ -1,41 +1,18 @@
-import { initializeDatabase } from './db-setup.js';
-
-// আপনি যখন প্রথমবার অ্যাপটি চালাবেন, তখন নিচের লাইনটি একবার আন-কমেন্ট করে রান করবেন
-// initializeDatabase(); 
-
-import { db } from './firebase-config.js';
-import { collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
-const quizContainer = document.getElementById('quiz-container');
-
-async function loadQuiz() {
-    quizContainer.innerHTML = "<p>প্রশ্ন লোড হচ্ছে...</p>";
+export function loadQuizEngine() {
+    const container = document.getElementById('quiz-container');
+    const categories = ["General Knowledge", "Mathematics", "Computer Science", "English Grammar", "Science"];
     
-    try {
-        // Firestore থেকে 'quizzes' কালেকশনটি নিচ্ছি
-        const querySnapshot = await getDocs(collection(db, "quizzes"));
-        
-        let htmlContent = "<h2>কুইজ শুরু করুন</h2>";
-        
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            // ডাটাবেজের ফিল্ড অনুযায়ী প্রশ্ন সাজাচ্ছি
-            htmlContent += `
-                <div class="question-card">
-                    <p><strong>${data.question}</strong></p>
-                    <div class="options">
-                        ${data.options.map(opt => `<button class="opt-btn">${opt}</button>`).join('')}
-                    </div>
-                </div>
-            `;
-        });
-        
-        quizContainer.innerHTML = htmlContent;
-    } catch (error) {
-        console.error("Error loading quiz: ", error);
-        quizContainer.innerHTML = "<p>প্রশ্ন লোড করতে সমস্যা হয়েছে। দয়া করে ইন্টারনেট চেক করুন।</p>";
-    }
+    let html = `<h2>বিষয় নির্বাচন করুন</h2><div class="cat-grid">`;
+    categories.forEach(cat => {
+        html += `<button class="category-btn" onclick="showQuiz('${cat}')">${cat}</button>`;
+    });
+    html += `</div>`;
+    container.innerHTML = html;
 }
 
-// পেজ লোড হলেই কুইজ ফেচ করবে
-loadQuiz();
+// এই ফাংশনটি এখন সরাসরি ডাটাবেজ থেকে ঐ ক্যাটাগরির প্রশ্ন আনবে
+window.showQuiz = async function(category) {
+    // এখানে আপনার Firestore থেকে ডাটা আনার লজিক বসবে
+    console.log("Loading quiz for: " + category);
+    document.getElementById('quiz-container').innerHTML = `<h3>${category} কুইজ শুরু হচ্ছে...</h3>`;
+};
