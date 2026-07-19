@@ -1,0 +1,294 @@
+/*
+==========================================================
+Quiz Of AKTER SIR
+theme.css
+Dark / Light Theme
+Version : 1.0.0
+==========================================================
+*/
+
+/*==========================================================
+Light Theme (Default)
+==========================================================*/
+
+:root,
+[data-theme="light"]{
+
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+
+    --secondary:#0f172a;
+
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+
+    --bg:#f5f7fb;
+    --card:#ffffff;
+
+    --text:#1e293b;
+    --text-light:#64748b;
+
+    --border:#e5e7eb;
+
+    --shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+}
+
+/*==========================================================
+Dark Theme
+==========================================================*/
+
+[data-theme="dark"]{
+
+    --primary:#3b82f6;
+    --primary-dark:#60a5fa;
+
+    --secondary:#f8fafc;
+
+    --success:#22c55e;
+    --warning:#facc15;
+    --danger:#ef4444;
+
+    --bg:#0f172a;
+    --card:#1e293b;
+
+    --text:#f8fafc;
+    --text-light:#cbd5e1;
+
+    --border:#334155;
+
+    --shadow:
+    0 12px 30px rgba(0,0,0,.45);
+
+}
+
+/*==========================================================
+Body
+==========================================================*/
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    transition:
+    background .3s,
+    color .3s;
+
+}
+
+/*==========================================================
+Common Elements
+==========================================================*/
+
+header,
+nav,
+.card,
+.stat-card,
+.quiz-card,
+.category-card,
+.feature-card,
+.about-card,
+.achievement-card,
+.contact-card,
+.leaderboard-item{
+
+    background:var(--card);
+
+    color:var(--text);
+
+    transition:.3s;
+
+}
+
+/*==========================================================
+Text
+==========================================================*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    color:var(--text);
+
+}
+
+p,
+span,
+li{
+
+    color:var(--text-light);
+
+}
+
+a{
+
+    color:inherit;
+
+}
+
+/*==========================================================
+Navbar
+==========================================================*/
+
+#header{
+
+    background:var(--card);
+
+}
+
+.logo a{
+
+    color:var(--primary);
+
+}
+
+.nav-menu li a{
+
+    color:var(--text);
+
+}
+
+/*==========================================================
+Buttons
+==========================================================*/
+
+.btn{
+
+    border-color:var(--primary);
+
+}
+
+.btn.primary{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/*==========================================================
+Input
+==========================================================*/
+
+input,
+textarea,
+select{
+
+    background:var(--card);
+
+    color:var(--text);
+
+    border:1px solid var(--border);
+
+}
+
+input::placeholder,
+textarea::placeholder{
+
+    color:var(--text-light);
+
+}
+
+/*==========================================================
+Tables
+==========================================================*/
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+table th{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+table th,
+table td{
+
+    border:1px solid var(--border);
+
+    padding:12px;
+
+}
+
+/*==========================================================
+Scrollbar
+==========================================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:var(--bg);
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:20px;
+
+}
+
+/*==========================================================
+Selection
+==========================================================*/
+
+::selection{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/*==========================================================
+Footer
+==========================================================*/
+
+footer{
+
+    background:#020617;
+
+    color:#fff;
+
+}
+
+[data-theme="light"] footer{
+
+    background:#0f172a;
+
+}
+
+/*==========================================================
+Transition
+==========================================================*/
+
+*{
+
+    transition:
+    background-color .3s,
+    color .3s,
+    border-color .3s,
+    box-shadow .3s;
+
+}
