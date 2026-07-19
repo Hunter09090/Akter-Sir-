@@ -1,3 +1,8 @@
+import { initializeDatabase } from './db-setup.js';
+
+// আপনি যখন প্রথমবার অ্যাপটি চালাবেন, তখন নিচের লাইনটি একবার আন-কমেন্ট করে রান করবেন
+// initializeDatabase(); 
+
 import { db } from './firebase-config.js';
 import { collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
