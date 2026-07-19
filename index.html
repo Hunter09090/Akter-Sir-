@@ -1,34 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Of AKTER SIR</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Header Section -->
-    <header>
-        <div class="logo">Quiz Of AKTER SIR</div>
-        <nav>
-            <a href="https://www.facebook.com/ahr110" target="_blank">Facebook</a>
-            <a href="https://wa.me/8801884197276" target="_blank">WhatsApp</a>
-        </nav>
-    </header>
-
-    <!-- Main Quiz Container -->
     <main id="quiz-container">
-        <!-- কুইজ এখানে লোড হবে -->
+        <!-- কুইজ বা ক্যাটাগরি এখানে লোড হবে -->
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>Contact: <a href="mailto:aakterhossen80@gmail.com">aakterhossen80@gmail.com</a></p>
-    </footer>
-
-    <!-- Firebase SDKs -->
-    <script type="module" src="firebase-config.js"></script>
-    <script type="module" src="quiz-engine.js"></script>
+    <script type="module">
+        import { loadLayout } from './header-footer.js';
+        import { loadQuizEngine } from './quiz-engine.js';
+        
+        loadLayout(); // হেডার-ফুটার লোড হলো
+        loadQuizEngine(); // কুইজ লজিক শুরু হলো
+    </script>
 </body>
 </html>
