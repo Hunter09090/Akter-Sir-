@@ -1,0 +1,425 @@
+/*
+==========================================================
+Quiz Of AKTER SIR
+responsive.css
+Version : 1.0.0
+==========================================================
+*/
+
+/*==========================================================
+Large Laptop (1200px)
+==========================================================*/
+
+@media (max-width:1200px){
+
+.hero{
+
+    gap:40px;
+
+}
+
+.hero-left h1{
+
+    font-size:50px;
+
+}
+
+.section-title h2{
+
+    font-size:36px;
+
+}
+
+.footer-top{
+
+    grid-template-columns:1.5fr 1fr 1fr;
+
+}
+
+}
+
+/*==========================================================
+Laptop (992px)
+==========================================================*/
+
+@media (max-width:992px){
+
+.navbar{
+
+    flex-wrap:wrap;
+
+    height:auto;
+
+    padding:20px 0;
+
+}
+
+.nav-menu{
+
+    width:100%;
+
+    justify-content:center;
+
+    margin:20px 0;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.nav-buttons{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+.hero{
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+}
+
+.hero-buttons{
+
+    justify-content:center;
+
+}
+
+.hero-right{
+
+    order:-1;
+
+}
+
+.hero-right img{
+
+    max-width:350px;
+
+}
+
+.stats{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.footer-top{
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+}
+
+.footer-logo{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.footer-links{
+
+    align-items:center;
+
+}
+
+.footer-social{
+
+    justify-content:center;
+
+}
+
+}
+
+/*==========================================================
+Tablet (768px)
+==========================================================*/
+
+@media (max-width:768px){
+
+section{
+
+    padding:60px 0;
+
+}
+
+.logo a{
+
+    font-size:24px;
+
+}
+
+.hero{
+
+    margin:40px auto;
+
+}
+
+.hero-left h1{
+
+    font-size:40px;
+
+}
+
+.hero-left p{
+
+    font-size:17px;
+
+}
+
+.section-title h2{
+
+    font-size:30px;
+
+}
+
+.stats{
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+
+}
+
+.stat-card{
+
+    padding:25px;
+
+}
+
+.quiz-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+#categoryContainer{
+
+    grid-template-columns:1fr;
+
+}
+
+.achievement-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.feature-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.about-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.challenge-card{
+
+    padding:40px 25px;
+
+}
+
+.challenge-card h2{
+
+    font-size:32px;
+
+}
+
+.contact-card{
+
+    padding:30px 20px;
+
+}
+
+.player{
+
+    gap:10px;
+
+}
+
+.player img{
+
+    width:45px;
+
+    height:45px;
+
+}
+
+}
+
+/*==========================================================
+Mobile (576px)
+==========================================================*/
+
+@media (max-width:576px){
+
+.nav-menu{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.nav-buttons{
+
+    flex-direction:column;
+
+}
+
+.nav-buttons .btn{
+
+    width:100%;
+
+}
+
+.hero-left h1{
+
+    font-size:32px;
+
+}
+
+.hero-left p{
+
+    font-size:16px;
+
+}
+
+.hero-buttons{
+
+    flex-direction:column;
+
+}
+
+.hero-buttons .btn{
+
+    width:100%;
+
+}
+
+.stats{
+
+    grid-template-columns:1fr;
+
+}
+
+.stat-card h2{
+
+    font-size:34px;
+
+}
+
+.leaderboard-item{
+
+    flex-direction:column;
+
+    gap:15px;
+
+    text-align:center;
+
+}
+
+.rank{
+
+    font-size:28px;
+
+}
+
+.challenge-card h2{
+
+    font-size:28px;
+
+}
+
+.challenge-card p{
+
+    font-size:16px;
+
+}
+
+.footer-logo h2{
+
+    font-size:22px;
+
+}
+
+.footer-social img{
+
+    width:34px;
+
+}
+
+}
+
+/*==========================================================
+Small Mobile (400px)
+==========================================================*/
+
+@media (max-width:400px){
+
+.logo a{
+
+    font-size:20px;
+
+}
+
+.hero-left h1{
+
+    font-size:28px;
+
+}
+
+.section-title h2{
+
+    font-size:26px;
+
+}
+
+.btn{
+
+    padding:12px 20px;
+
+    font-size:14px;
+
+}
+
+.contact-card{
+
+    padding:20px 15px;
+
+}
+
+.contact-card p{
+
+    font-size:16px;
+
+}
+
+.loader-logo{
+
+    font-size:22px;
+
+}
+
+.loader-spinner{
+
+    width:55px;
+
+    height:55px;
+
+}
+
+  }
