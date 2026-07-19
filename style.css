@@ -1,7 +1,1222 @@
-body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; padding: 0; }
-header { background: #1a73e8; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.question-card { background: white; padding: 25px; margin: 20px auto; border-radius: 15px; max-width: 600px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s; }
-.question-card:hover { transform: scale(1.02); }
-.opt-btn { display: block; width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; transition: 0.3s; }
-.opt-btn:hover { background: #e8f0fe; border-color: #1a73e8; }
-.category-btn { padding: 10px 20px; background: #333; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+/*
+==========================================================
+Quiz Of AKTER SIR
+style.css
+Version : 1.0.0
+==========================================================
+*/
+
+/*==========================================================
+Google Font
+==========================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*==========================================================
+Root Variables
+==========================================================*/
+
+:root{
+
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --secondary:#0f172a;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+
+    --white:#ffffff;
+    --black:#111827;
+
+    --bg:#f5f7fb;
+    --card:#ffffff;
+
+    --text:#1e293b;
+    --text-light:#64748b;
+
+    --border:#e5e7eb;
+
+    --shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    --radius:15px;
+
+    --transition:.30s ease;
+
+    --container:1300px;
+
+}
+
+/*==========================================================
+Reset
+==========================================================*/
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    overflow-x:hidden;
+
+    line-height:1.6;
+
+}
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+ul{
+
+    list-style:none;
+
+}
+
+button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+}
+
+input{
+
+    font-family:inherit;
+
+}
+
+/*==========================================================
+Container
+==========================================================*/
+
+.container{
+
+    width:95%;
+
+    max-width:var(--container);
+
+    margin:auto;
+
+}
+
+/*==========================================================
+Section
+==========================================================*/
+
+section{
+
+    padding:80px 0;
+
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.section-title h2{
+
+    font-size:40px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.section-title p{
+
+    color:var(--text-light);
+
+    font-size:17px;
+
+}
+
+/*==========================================================
+Buttons
+==========================================================*/
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:14px 28px;
+
+    border-radius:50px;
+
+    background:white;
+
+    color:var(--primary);
+
+    border:2px solid var(--primary);
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow);
+
+}
+
+.btn.primary{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+/*==========================================================
+Cards
+==========================================================*/
+
+.card{
+
+    background:var(--card);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    padding:25px;
+
+}
+
+/*==========================================================
+Grid
+==========================================================*/
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+/*==========================================================
+Loader
+==========================================================*/
+
+#loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:999999;
+
+}
+
+.loader-box{
+
+    text-align:center;
+
+}
+
+.loader-logo{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    margin-bottom:20px;
+
+}
+
+.loader-spinner{
+
+    width:70px;
+
+    height:70px;
+
+    border:6px solid #ddd;
+
+    border-top:6px solid var(--primary);
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    100%{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+/*==========================================================
+Header
+==========================================================*/
+
+#header{
+
+    position:sticky;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    background:rgba(255,255,255,.96);
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+
+    z-index:9999;
+
+}
+
+.navbar{
+
+    width:95%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+    height:80px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+.logo a{
+
+    font-size:30px;
+
+    font-weight:800;
+
+    color:var(--primary);
+
+    letter-spacing:.5px;
+
+}
+
+.nav-menu{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:30px;
+
+}
+
+.nav-menu li a{
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+    transition:var(--transition);
+
+    position:relative;
+
+}
+
+.nav-menu li a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:0;
+
+    height:3px;
+
+    border-radius:10px;
+
+    background:var(--primary);
+
+    transition:var(--transition);
+
+}
+
+.nav-menu li a:hover{
+
+    color:var(--primary);
+
+}
+
+.nav-menu li a:hover::after{
+
+    width:100%;
+
+}
+
+.nav-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+/*==========================================================
+Hero Section
+==========================================================*/
+
+.hero{
+
+    width:95%;
+
+    max-width:1300px;
+
+    margin:70px auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    align-items:center;
+
+    gap:60px;
+
+}
+
+.hero-left h1{
+
+    font-size:58px;
+
+    font-weight:800;
+
+    line-height:1.2;
+
+    margin-bottom:25px;
+
+}
+
+.hero-left span{
+
+    color:var(--primary);
+
+}
+
+.hero-left p{
+
+    font-size:20px;
+
+    color:var(--text-light);
+
+    margin-bottom:35px;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.hero-right{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.hero-right img{
+
+    width:100%;
+
+    max-width:480px;
+
+    animation:floatLogo 5s ease-in-out infinite;
+
+    filter:drop-shadow(0 20px 35px rgba(37,99,235,.25));
+
+}
+
+@keyframes floatLogo{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-18px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*==========================================================
+Statistics
+==========================================================*/
+
+.stats{
+
+    width:95%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+}
+
+.stat-card{
+
+    background:var(--card);
+
+    padding:35px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.stat-card h2{
+
+    font-size:42px;
+
+    color:var(--primary);
+
+    margin-bottom:10px;
+
+}
+
+.stat-card p{
+
+    color:var(--text-light);
+
+    font-weight:600;
+
+}
+
+/*==========================================================
+Categories
+==========================================================*/
+
+#categories{
+
+    width:95%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+}
+
+#categoryContainer{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+
+}
+
+.category-card{
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+    cursor:pointer;
+
+}
+
+.category-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.category-icon{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+}
+
+.category-card h3{
+
+    font-size:24px;
+
+    margin-bottom:10px;
+
+}
+
+.category-card p{
+
+    color:var(--text-light);
+
+    margin-bottom:20px;
+
+}
+
+.category-card .btn{
+
+    width:100%;
+
+}
+
+/*==========================================================
+Featured Quiz
+==========================================================*/
+
+.quiz-grid{
+
+    width:95%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+
+}
+
+.quiz-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+
+}
+
+.quiz-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.quiz-card h3{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+}
+
+.quiz-card p{
+
+    color:var(--text-light);
+
+    margin-bottom:20px;
+
+}
+
+.quiz-meta{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+
+    font-size:15px;
+
+    color:var(--text-light);
+
+}
+/*==========================================================
+Daily Challenge
+==========================================================*/
+
+.daily-challenge{
+
+    width:95%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+}
+
+.challenge-card{
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    color:#fff;
+
+    padding:60px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+}
+
+.challenge-card h2{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+.challenge-card p{
+
+    font-size:18px;
+
+    margin-bottom:30px;
+
+    opacity:.95;
+
+}
+
+.challenge-card .btn{
+
+    background:#fff;
+
+    color:var(--primary);
+
+    border:none;
+
+}
+
+/*==========================================================
+Leaderboard
+==========================================================*/
+
+.leaderboard-list{
+
+    width:95%;
+
+    max-width:1100px;
+
+    margin:auto;
+
+}
+
+.leaderboard-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 25px;
+
+    background:#fff;
+
+    border-radius:15px;
+
+    margin-bottom:15px;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+}
+
+.leaderboard-item:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.rank{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+}
+
+.player{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.player img{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.player-name{
+
+    font-weight:600;
+
+}
+
+.player-xp{
+
+    color:var(--text-light);
+
+}
+
+/*==========================================================
+Achievement
+==========================================================*/
+
+.achievement-grid{
+
+    width:95%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+.achievement-card{
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+}
+
+.achievement-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.achievement-card h3{
+
+    margin-bottom:15px;
+
+}
+
+/*==========================================================
+Feature / About
+==========================================================*/
+
+.feature-grid,
+.about-grid{
+
+    width:95%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+.feature-card,
+.about-card{
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+}
+
+.feature-card:hover,
+.about-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.feature-card h3,
+.about-card h3{
+
+    margin-bottom:15px;
+
+    color:var(--primary);
+
+}
+
+/*==========================================================
+Contact
+==========================================================*/
+
+.contact-card{
+
+    width:95%;
+
+    max-width:700px;
+
+    margin:auto;
+
+    background:#fff;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.contact-card p{
+
+    margin:20px 0;
+
+    font-size:18px;
+
+}
+
+.contact-card a{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+/*==========================================================
+Footer
+==========================================================*/
+
+footer{
+
+    margin-top:80px;
+
+    background:#0f172a;
+
+    color:#fff;
+
+    padding:60px 20px 30px;
+
+}
+
+.footer-top{
+
+    width:95%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr 1fr;
+
+    gap:40px;
+
+    align-items:start;
+
+}
+
+.footer-logo img{
+
+    width:70px;
+
+    margin-bottom:15px;
+
+}
+
+.footer-logo h2{
+
+    font-size:28px;
+
+}
+
+.footer-links{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.footer-links a{
+
+    color:#cbd5e1;
+
+}
+
+.footer-links a:hover{
+
+    color:#fff;
+
+}
+
+.footer-social{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.footer-social img{
+
+    width:38px;
+
+    transition:.3s;
+
+}
+
+.footer-social img:hover{
+
+    transform:scale(1.15);
+
+}
+
+.footer-bottom{
+
+    margin-top:35px;
+
+    text-align:center;
+
+    color:#cbd5e1;
+
+}
+
+footer hr{
+
+    margin-top:35px;
+
+    border:none;
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+}
+
+/*==========================================================
+Center
+==========================================================*/
+
+.center{
+
+    text-align:center;
+
+    margin-top:30px;
+
+}
+
+/*==========================================================
+Scrollbar
+==========================================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#e5e7eb;
+
+}
+
+/*==========================================================
+Selection
+==========================================================*/
+
+::selection{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/*==========================================================
+Fade Animation
+==========================================================*/
+
+.fade-up{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+  }
