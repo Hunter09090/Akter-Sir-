@@ -19,7 +19,8 @@ let currentUser = null;
 ========================= */
 
 async function login() {
-
+alert("Login Button Clicked");
+   
     try {
 
         const result =
