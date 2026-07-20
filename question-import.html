@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Question Import</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <!-- Firebase -->
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+    <script src="firebase-config.js"></script>
+
+</head>
+
+<body>
+
+    <div class="import-box">
+
+        <h2>
+
+            Question Import Panel
+
+        </h2>
+
+        <select id="category">
+
+            <option value="সাধারণ জ্ঞান">সাধারণ জ্ঞান</option>
+
+            <option value="বাংলাদেশ">বাংলাদেশ</option>
+
+            <option value="আন্তর্জাতিক">আন্তর্জাতিক</option>
+
+            <option value="ইসলাম">ইসলাম</option>
+
+            <option value="বাংলা">বাংলা</option>
+
+            <option value="ইংরেজি">ইংরেজি</option>
+
+            <option value="গণিত">গণিত</option>
+
+            <option value="বিজ্ঞান">বিজ্ঞান</option>
+
+            <option value="আইসিটি">আইসিটি</option>
+
+            <option value="ধাঁধা">ধাঁধা</option>
+
+            <option value="ইতিহাস">ইতিহাস</option>
+
+            <option value="ভূগোল">ভূগোল</option>
+
+            <option value="খেলাধুলা">খেলাধুলা</option>
+
+            <option value="বিনোদন">বিনোদন</option>
+
+        </select>
+
+        <br><br>
+
+        <textarea id="questions"
+
+                  rows="20"
+
+                  placeholder="প্রশ্ন এখানে Paste করুন..."></textarea>
+
+        <br><br>
+
+        <button onclick="importQuestions()">
+
+            Import Questions
+
+        </button>
+
+        <p id="result"></p>
+
+    </div>
+        <script>
+
+        async function importQuestions() {
+
+            const category =
+                document.getElementById("category").value;
+
+            const text =
+                document.getElementById("questions").value.trim();
+
+            if (!text) {
+
+                alert("প্রশ্ন লিখুন");
+
+                return;
+
+            }
+
+            const blocks = text.split("\n\n");
+
+            let count = 0;
+
+            for (const block of blocks) {
+
+                const lines = block
+                    .split("\n")
+                    .map(item => item.trim())
+                    .filter(Boolean);
+
+                if (lines.length < 6) continue;
+
+                const question = lines[0]
+                    .replace("প্রশ্ন:", "")
+                    .trim();
+
+                const options = [
+
+                    lines[1].replace(/^A\.\s*/, ""),
+
+                    lines[2].replace(/^B\.\s*/, ""),
+
+                    lines[3].replace(/^C\.\s*/, ""),
+
+                    lines[4].replace(/^D\.\s*/, "")
+
+                ];
+
+                const answerLetter = lines[5]
+                    .replace("Answer:", "")
+                    .trim()
+                    .toUpperCase();
+
+                const map = {
+
+                    A: options[0],
+                    B: options[1],
+                    C: options[2],
+                    D: options[3]
+
+                };
+
+                await db.collection("questions").add({
+
+                    category,
+
+                    question,
+
+                    options,
+
+                    answer: map[answerLetter],
+
+                    difficulty: "Easy",
+
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+
+                });
+
+                count++;
+
+            }
+
+            document.getElementById("result").innerHTML =
+                `✅ ${count} টি প্রশ্ন সফলভাবে Import হয়েছে।`;
+
+            document.getElementById("questions").value = "";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
