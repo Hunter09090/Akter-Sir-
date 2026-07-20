@@ -314,6 +314,23 @@ Loader
     }
 
 }
+#loader{
+
+    position:fixed;
+    inset:0;
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:999999;
+
+    transition:opacity .5s ease,
+               visibility .5s ease;
+
+}
+
 /*==========================================================
 Header
 ==========================================================*/
@@ -1220,19 +1237,3 @@ Fade Animation
     }
 
   }
-#loader{
-
-    position:fixed;
-    inset:0;
-    background:#fff;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    z-index:999999;
-
-    transition:opacity .5s ease,
-               visibility .5s ease;
-
-}
