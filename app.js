@@ -147,7 +147,7 @@ function updateUserUI(user) {
 async function loadTopThreeUI() {
 
     const container =
-        document.getElementById("topThreeContainer");
+        document.getElementById("leaderboardList");
 
     if (!container) return;
 
