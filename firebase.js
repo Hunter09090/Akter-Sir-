@@ -169,7 +169,8 @@ async function loadTopThree() {
 
         console.error(error);
 
-        return [];
+        box.innerHTML = error.message;
+
 
     }
 
