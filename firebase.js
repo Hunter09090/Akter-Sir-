@@ -55,9 +55,17 @@ async function logout() {
 
         await auth.signOut();
 
-    } catch (error) {
+        currentUser = null;
 
-        console.error(error);
+        updateUserUI(null);
+
+        loadTopThreeUI();
+
+    }
+
+    catch (error) {
+
+        console.error("Logout Error :", error);
 
     }
 
