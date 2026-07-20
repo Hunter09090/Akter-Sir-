@@ -22,6 +22,10 @@ async function initApp() {
 
     startIntro();
 
+   renderCategories();
+
+loadTopThreeUI();
+   
 }
 
 /* =========================
@@ -263,10 +267,3 @@ function startQuiz(category) {
    App Ready
 ========================= */
 
-window.addEventListener("load", () => {
-
-    renderCategories();
-
-    loadTopThreeUI();
-
-});
