@@ -510,3 +510,47 @@ main{
     flex:1;
 
 }
+/* ==========================
+   Leaderboard
+========================== */
+
+.leaderboard-list{
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:15px;
+
+}
+
+.leader-item{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#fff;
+    padding:12px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.leader-rank{
+
+    font-weight:bold;
+    color:#2563eb;
+
+}
+
+.leader-name{
+
+    flex:1;
+    margin-left:10px;
+
+}
+
+.leader-score{
+
+    font-weight:bold;
+
+}
