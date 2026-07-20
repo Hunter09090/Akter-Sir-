@@ -22,17 +22,24 @@ async function login() {
 
     try {
 
-        const result = await auth.signInWithPopup(provider);
+        const result =
+            await auth.signInWithPopup(provider);
 
         currentUser = result.user;
 
         await saveUser(currentUser);
 
-    } catch (error) {
+        updateUserUI(currentUser);
+
+        loadTopThreeUI();
+
+    }
+
+    catch (error) {
 
         console.error("Login Error :", error);
 
-        alert("Login Failed!");
+        alert(error.message);
 
     }
 
