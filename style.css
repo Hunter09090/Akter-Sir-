@@ -444,3 +444,18 @@ main{
     }
 
 }
+.option-btn.selected{
+    background:#2563eb;
+    color:#fff;
+    border-color:#2563eb;
+}
+
+.option-btn.correct{
+    background:#16a34a;
+    color:#fff;
+}
+
+.option-btn.wrong{
+    background:#dc2626;
+    color:#fff;
+}
