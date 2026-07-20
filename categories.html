@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        Quiz Categories | Quiz Of AKTER SIR
+
+    </title>
+
+    <meta name="description"
+          content="Browse all quiz categories">
+
+    <meta name="keywords"
+          content="Quiz, MCQ, Categories">
+
+    <meta name="theme-color"
+          content="#2563eb">
+
+    <link rel="stylesheet"
+          href="theme.css">
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<!-- ===========================================
+HEADER
+=========================================== -->
+
+<div id="header"></div>
+
+<!-- ===========================================
+PAGE HERO
+=========================================== -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <h1>
+
+            Quiz Categories
+
+        </h1>
+
+        <p>
+
+            আপনার পছন্দের ক্যাটাগরি নির্বাচন করুন এবং
+            কুইজ শুরু করুন।
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+SEARCH & FILTER
+=========================================== -->
+
+<section>
+
+    <div class="container">
+
+        <div class="card">
+
+            <div class="grid">
+
+                <div>
+
+                    <input
+
+                        type="search"
+
+                        id="categorySearch"
+
+                        class="form-control"
+
+                        placeholder="Search Category..."
+
+                    >
+
+                </div>
+
+                <div>
+
+                    <select
+
+                        id="sortCategory"
+
+                        class="form-control">
+
+                        <option value="default">
+
+                            Sort Category
+
+                        </option>
+
+                        <option value="az">
+
+                            A → Z
+
+                        </option>
+
+                        <option value="za">
+
+                            Z → A
+
+                        </option>
+
+                        <option value="quiz">
+
+                            Quiz Count
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+CATEGORY SUMMARY
+=========================================== -->
+
+<section>
+
+    <div class="container">
+
+        <div class="dashboard-grid">
+
+            <div class="dashboard-card">
+
+                <h2 id="totalCategory">
+
+                    0
+
+                </h2>
+
+                <p>
+
+                    Total Categories
+
+                </p>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <h2 id="totalQuiz">
+
+                    0
+
+                </h2>
+
+                <p>
+
+                    Total Quiz
+
+                </p>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <h2 id="activeCategory">
+
+                    0
+
+                </h2>
+
+                <p>
+
+                    Active Categories
+
+                </p>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <h2 id="todayQuiz">
+
+                    0
+
+                </h2>
+
+                <p>
+
+                    Today's Quiz
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+CATEGORY GRID
+=========================================== -->
+
+<section>
+
+    <div class="container">
+
+        <div
+
+            id="categoryContainer"
+
+            class="grid">
+
+            <!-- Dynamic Category -->
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+LOADING
+=========================================== -->
+
+<section
+id="categoryLoading">
+
+    <div class="container">
+
+        <div class="grid">
+
+            <div class="card">
+
+                Loading...
+
+            </div>
+
+            <div class="card">
+
+                Loading...
+
+            </div>
+
+            <div class="card">
+
+                Loading...
+
+            </div>
+
+            <div class="card">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+EMPTY STATE
+=========================================== -->
+
+<section
+id="emptyCategory"
+style="display:none;">
+
+    <div class="container">
+
+        <div class="card">
+
+            <center>
+
+                <h2>
+
+                    📂
+
+                </h2>
+
+                <br>
+
+                <h3>
+
+                    No Category Found
+
+                </h3>
+
+                <br>
+
+                <p>
+<!-- ===========================================
+FEATURED CATEGORY
+=========================================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+
+            Featured Categories
+
+        </h2>
+
+        <div
+
+            id="featuredCategoryContainer"
+
+            class="grid">
+
+            <!-- Dynamic Featured Categories -->
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+RECENT CATEGORY
+=========================================== -->
+
+<section>
+
+    <div class="container">
+
+        <h2 class="section-title">
+
+            Recently Added
+
+        </h2>
+
+        <div
+
+            id="recentCategoryContainer"
+
+            class="grid">
+
+            <!-- Dynamic Recent Categories -->
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+CATEGORY INFORMATION
+=========================================== -->
+
+<section>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h2>
+
+                About Quiz Categories
+
+            </h2>
+
+            <br>
+
+            <p>
+
+                সকল Quiz Category Firebase Firestore থেকে
+                স্বয়ংক্রিয়ভাবে লোড হয়।
+                নতুন Category যোগ করতে শুধুমাত্র Firestore-এর
+                <strong>categories</strong> collection-এ একটি নতুন
+                document যোগ করলেই হবে।
+            </p>
+
+            <br>
+
+            <p>
+
+                কোনো HTML পরিবর্তনের প্রয়োজন হবে না।
+                Category Search, Sort, Featured Category,
+                Quiz Count এবং Category Card
+                স্বয়ংক্রিয়ভাবে আপডেট হবে।
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================
+FOOTER
+=========================================== -->
+
+<div id="footer"></div>
+
+<!-- ===========================================
+JAVASCRIPT
+=========================================== -->
+
+<script type="module" src="firebase-config.js"></script>
+
+<script src="components.js"></script>
+
+<script src="app.js"></script>
+
+<script type="module" src="category.js"></script>
+
+</body>
+
+            </html>
+                    Please try another search.
+
+                </p>
+
+            </center>
+
+        </div>
+
+    </div>
+
+</section>
