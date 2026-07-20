@@ -19,12 +19,12 @@ let currentUser = null;
 ========================= */
 
 async function login() {
-alert("Login Button Clicked");
+
    
     try {
 
         const result =
-            await auth.signInWithPopup(provider);
+            await auth.signInWithRedirect(provider);
 
         currentUser = result.user;
 
