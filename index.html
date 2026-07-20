@@ -1,1 +1,274 @@
 
+<!-- ===========================
+File: index.html
+Part: 1
+Quiz Of AKTER SIR
+=========================== -->
+
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz Of AKTER SIR</title>
+
+    <meta
+        name="description"
+        content="Quiz Of AKTER SIR - Free Online Quiz Website">
+
+    <meta
+        name="keywords"
+        content="Quiz, MCQ, Bangladesh, Islam, ICT, GK">
+
+    <meta
+        name="author"
+        content="AKTER SIR">
+
+    <meta
+        name="theme-color"
+        content="#0f172a">
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <!-- Firebase SDK -->
+    <script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+
+    <script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+
+    <script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+    <!-- JS -->
+    <script defer src="firebase-config.js"></script>
+    <script defer src="firebase.js"></script>
+    <script defer src="utils.js"></script>
+    <script defer src="questions.js"></script>
+    <script defer src="quiz.js"></script>
+    <script defer src="app.js"></script>
+
+</head>
+
+<body>
+
+    <!-- ======================
+         Intro Animation
+    ======================= -->
+
+    <section id="intro-screen">
+
+        <div class="intro-box">
+
+            <div class="intro-logo">
+
+                🎓
+
+            </div>
+
+            <h1>
+
+                Quiz Of AKTER SIR
+
+            </h1>
+
+            <p>
+
+                Learn • Play • Improve
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ======================
+         Main Website
+    ======================= -->
+
+    <div id="app" class="hidden">
+
+        <!-- Header Load -->
+        <div id="header"></div>
+
+        <main>
+
+            <!-- Weekly Top 3 -->
+            <section id="top-three">
+
+                <h2>
+                    🏆 Weekly Top 3
+                </h2>
+
+                <div id="topThreeContainer">
+
+                </div>
+
+            </section>
+
+            <!-- Category Section -->
+            <section id="category-section">
+
+                <h2>
+
+                    📚 Quiz Categories
+
+                </h2>
+
+                <div id="categoryContainer">
+
+                </div>
+
+            </section>
+                        <!-- ======================
+                 Quiz Section
+            ======================= -->
+
+            <section id="quiz-section" class="hidden">
+
+                <div class="quiz-card">
+
+                    <!-- Quiz Header -->
+
+                    <div class="quiz-top">
+
+                        <h2 id="quizCategory">
+
+                            Category
+
+                        </h2>
+
+                        <div id="quizTimer">
+
+                            ⏱️ 00:00
+
+                        </div>
+
+                    </div>
+
+                    <!-- Question -->
+
+                    <h3 id="questionText">
+
+                        Loading Question...
+
+                    </h3>
+
+                    <!-- Options -->
+
+                    <div id="optionContainer">
+
+                        <!-- Options will load here -->
+
+                    </div>
+
+                    <!-- Navigation -->
+
+                    <div class="quiz-buttons">
+
+                        <button id="prevBtn">
+
+                            ⬅ Previous
+
+                        </button>
+
+                        <button id="nextBtn">
+
+                            Next ➜
+
+                        </button>
+
+                        <button id="finishBtn">
+
+                            ✅ Finish Quiz
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ======================
+                 Result Section
+            ======================= -->
+
+            <section id="result-section" class="hidden">
+
+                <div class="result-card">
+
+                    <h2>
+
+                        🎉 Quiz Result
+
+                    </h2>
+
+                    <div class="result-info">
+
+                        <p>
+
+                            Correct :
+                            <span id="correctAnswer">
+                                0
+                            </span>
+
+                        </p>
+
+                        <p>
+
+                            Wrong :
+                            <span id="wrongAnswer">
+                                0
+                            </span>
+
+                        </p>
+
+                        <p>
+
+                            Final Score :
+                            <span id="finalScore">
+                                0
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                    <div class="result-buttons">
+
+                        <button id="playAgainBtn">
+
+                            🔄 Play Again
+
+                        </button>
+
+                        <button id="homeBtn">
+
+                            🏠 Home
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- Footer Load -->
+
+        <div id="footer"></div>
+
+    </div>
+
+</body>
+
+</html>
