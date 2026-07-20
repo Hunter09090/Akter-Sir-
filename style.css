@@ -459,3 +459,54 @@ main{
     background:#dc2626;
     color:#fff;
 }
+/* ==========================
+   Result Section
+========================== */
+
+.result-card{
+
+    max-width:420px;
+    margin:30px auto;
+    padding:20px;
+    background:#fff;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+.result-card h2{
+
+    margin-bottom:20px;
+
+}
+
+.result-item{
+
+    display:flex;
+    justify-content:space-between;
+    margin:12px 0;
+    padding:10px;
+    border-bottom:1px solid #eee;
+
+}
+
+.result-item strong{
+
+    color:#2563eb;
+
+}
+
+.result-buttons{
+
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+
+}
+
+.result-buttons button{
+
+    flex:1;
+
+}
