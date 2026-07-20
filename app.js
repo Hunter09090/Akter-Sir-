@@ -110,7 +110,7 @@ function updateUserUI(user) {
     const userPhoto = document.getElementById("userPhoto");
     const userName = document.getElementById("userName");
 
-    if (!profile) return;
+    if (!profile || !loginBtn || !logoutBtn) return;
 
     if (user) {
 
@@ -126,15 +126,18 @@ function updateUserUI(user) {
         userName.textContent =
             user.displayName || "User";
 
-    }
-
-    else {
+    } else {
 
         profile.classList.add("hidden");
 
         loginBtn.classList.remove("hidden");
 
         logoutBtn.classList.add("hidden");
+
+        userPhoto.src =
+            "https://via.placeholder.com/40";
+
+        userName.textContent = "Guest";
 
     }
 
