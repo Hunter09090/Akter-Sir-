@@ -174,3 +174,71 @@ async function loadTopThree() {
     }
 
 }
+/* ==========================
+   Top 3 Leaderboard
+========================== */
+
+async function loadTopThreeUI() {
+
+    const box = document.getElementById("leaderboardList");
+
+    if (!box) return;
+
+    box.innerHTML = "<p>Loading...</p>";
+
+    try {
+
+        const snapshot = await db
+            .collection("leaderboard")
+            .orderBy("score", "desc")
+            .orderBy("time", "asc")
+            .limit(3)
+            .get();
+
+        if (snapshot.empty) {
+
+            box.innerHTML = "<p>No Score Yet.</p>";
+
+            return;
+
+        }
+
+        box.innerHTML = "";
+
+        snapshot.forEach((doc, index) => {
+
+            const item = doc.data();
+
+            box.innerHTML += `
+
+            <div class="leader-item">
+
+                <span class="leader-rank">
+                    #${index + 1}
+                </span>
+
+                <span class="leader-name">
+                    ${item.name}
+                </span>
+
+                <span class="leader-score">
+                    ${item.score}
+                </span>
+
+            </div>
+
+            `;
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        box.innerHTML = "<p>Load Failed.</p>";
+
+    }
+
+}
