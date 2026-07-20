@@ -257,13 +257,3 @@ function renderCategories() {
    Placeholder
 ========================= */
 
-function startQuiz(category) {
-
-    alert(category + " Quiz Coming Soon...");
-
-}
-
-/* =========================
-   App Ready
-========================= */
-
