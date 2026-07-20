@@ -181,6 +181,8 @@ async function loadTopThree() {
 
 async function loadTopThreeUI() {
 
+   console.log("Leaderboard Function Running");
+   
     const box = document.getElementById("leaderboardList");
 
     if (!box) return;
@@ -192,7 +194,6 @@ async function loadTopThreeUI() {
         const snapshot = await db
             .collection("leaderboard")
             .orderBy("score", "desc")
-            .orderBy("time", "asc")
             .limit(3)
             .get();
 
