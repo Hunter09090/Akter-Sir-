@@ -238,7 +238,9 @@ async function loadTopThreeUI() {
 
         console.error(error);
 
-        box.innerHTML = "<p>Load Failed.</p>";
+        alert(error.message);
+
+    box.innerHTML = error.message;
 
     }
 
