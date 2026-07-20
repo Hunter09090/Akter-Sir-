@@ -3,165 +3,63 @@
 
 <head>
 
-    <!-- ======================================================
-        Quiz Of AKTER SIR
-        Home Page
-    ======================================================= -->
+<meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<title>Quiz Of AKTER SIR</title>
 
-    <title>Quiz Of AKTER SIR</title>
+<meta name="description" content="Quiz Of AKTER SIR - Professional Online Quiz Platform">
 
-    <meta name="description"
-          content="Professional Online Quiz Platform by AKTER SIR">
+<meta name="keywords" content="Quiz, MCQ, Bangladesh, Online Exam">
 
-    <meta name="keywords"
-          content="Quiz, Online Quiz, MCQ, Bangladesh Quiz, Programming Quiz">
+<meta name="author" content="AKTER SIR">
 
-    <meta name="author"
-          content="AKTER SIR">
+<meta name="theme-color" content="#0f172a">
 
-    <meta name="theme-color"
-          content="#2563eb">
+<link rel="icon" href="favicon.png">
 
-    <meta property="og:title"
-          content="Quiz Of AKTER SIR">
+<link rel="stylesheet" href="theme.css">
 
-    <meta property="og:description"
-          content="Professional Quiz Platform">
-
-    <meta property="og:type"
-          content="website">
-
-    <link rel="icon"
-          href="favicon.svg">
-
-    <link rel="manifest"
-          href="manifest.json">
-
-    <link rel="stylesheet"
-          href="style.css">
-
-    <link rel="stylesheet"
-          href="responsive.css">
-
-    <link rel="stylesheet"
-          href="theme.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<!-- ======================================================
-    Loading Screen
-====================================================== -->
+<!-- ========= HEADER AUTO LOAD ========= -->
 
-<div id="loader">
+<div id="header"></div>
 
-    <div class="loader-box">
+<!-- ========= MAIN ========= -->
 
-        <div class="loader-logo">
+<main>
 
-            Quiz Of AKTER SIR
+<section class="hero">
 
-        </div>
+<div class="container">
 
-        <div class="loader-spinner"></div>
-
-    </div>
-
-</div>
-
-<!-- ======================================================
-    Header
-====================================================== -->
-
-<header id="header">
-
-<nav class="navbar">
-
-<div class="logo">
-
-<a href="index.html">
-
+<h1>
 Quiz Of AKTER SIR
+</h1>
 
-</a>
+<p>
 
-</div>
+বাংলাদেশের আধুনিক MCQ Quiz Platform
 
-<ul class="nav-menu">
+</p>
 
-<li>
+<div class="hero-btn">
 
-<a href="#home">
-
-Home
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#categories">
-
-Categories
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#leaderboard">
-
-Leaderboard
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#about">
-
-About
-
-</a>
-
-</li>
-
-<li>
-
-<a href="#contact">
-
-Contact
-
-</a>
-
-</li>
-
-</ul>
-
-<div class="nav-buttons">
-
-<a
-href="login.html"
-class="btn">
+<a href="login.html" class="btn">
 
 Login
 
 </a>
 
-<a
-href="register.html"
-class="btn primary">
+<a href="signup.html" class="btn btn-outline">
 
 Register
 
@@ -169,155 +67,13 @@ Register
 
 </div>
 
-</nav>
-
-</header>
-
-<!-- ======================================================
-    Hero Section
-====================================================== -->
-
-<section
-id="home"
-class="hero">
-
-<div class="hero-left">
-
-<h1>
-
-Welcome To
-
-<span>
-
-Quiz Of AKTER SIR
-
-</span>
-
-</h1>
-
-<p>
-
-Professional Online Quiz Platform
-
-Built With
-
-Firebase &
-GitHub Pages
-
-</p>
-
-<div class="hero-buttons">
-
-<a
-href="login.html"
-class="btn primary">
-
-Start Quiz
-
-</a>
-
-<a
-href="#about"
-class="btn">
-
-Learn More
-
-</a>
-
-</div>
-
-</div>
-
-<div class="hero-right">
-
-<img
-src="logo.svg"
-alt="Quiz Logo">
-
 </div>
 
 </section>
 
-<!-- ======================================================
-    Statistics
-====================================================== -->
+<section class="category-preview">
 
-<section
-id="statistics"
-class="stats">
-
-<div class="stat-card">
-
-<h2 id="totalUsers">
-
-0
-
-</h2>
-
-<p>
-
-Users
-
-</p>
-
-</div>
-
-<div class="stat-card">
-
-<h2 id="totalQuiz">
-
-0
-
-</h2>
-
-<p>
-
-Quizzes
-
-</p>
-
-</div>
-
-<div class="stat-card">
-
-<h2 id="totalQuestions">
-
-0
-
-</h2>
-
-<p>
-
-Questions
-
-</p>
-
-</div>
-
-<div class="stat-card">
-
-<h2 id="totalPlay">
-
-0
-
-</h2>
-
-<p>
-
-Quiz Played
-
-</p>
-
-</div>
-
-</section>
-
-<!-- ======================================================
-    Categories
-====================================================== -->
-
-<section
-id="categories">
+<div class="container">
 
 <h2>
 
@@ -325,241 +81,29 @@ Quiz Categories
 
 </h2>
 
-<div
-id="categoryContainer"
-class="grid">
+<div id="categoryContainer">
 
-<!-- Firebase -->
+<!-- JS -->
+
+</div>
 
 </div>
 
 </section>
-<!-- ======================================================
-    Featured Quiz
-====================================================== -->
 
-<section
-id="featuredQuiz"
-class="featured">
+<section class="leaderboard-preview">
 
-<div class="section-title">
+<div class="container">
 
 <h2>
 
-Featured Quiz
+Top Players
 
 </h2>
 
-<p>
+<div id="leaderboardContainer">
 
-Play our most popular quizzes.
-
-</p>
-
-</div>
-
-<div
-id="featuredQuizContainer"
-class="quiz-grid">
-
-<!-- Firebase -->
-
-</div>
-
-</section>
-
-<!-- ======================================================
-    Daily Challenge
-====================================================== -->
-
-<section
-id="dailyChallenge"
-class="daily-challenge">
-
-<div class="challenge-card">
-
-<h2>
-
-🔥 Daily Challenge
-
-</h2>
-
-<p>
-
-Complete today's quiz and earn Bonus XP + Coins.
-
-</p>
-
-<a
-href="quiz.html"
-class="btn primary">
-
-Play Now
-
-</a>
-
-</div>
-
-</section>
-
-<!-- ======================================================
-    Latest Quiz
-====================================================== -->
-
-<section
-id="latestQuiz">
-
-<div class="section-title">
-
-<h2>
-
-Latest Quiz
-
-</h2>
-
-<p>
-
-Recently published quizzes.
-
-</p>
-
-</div>
-
-<div
-id="latestQuizContainer"
-class="quiz-grid">
-
-<!-- Firebase -->
-
-</div>
-
-</section>
-
-<!-- ======================================================
-    Leaderboard Preview
-====================================================== -->
-
-<section
-id="leaderboard">
-
-<div class="section-title">
-
-<h2>
-
-🏆 Top Players
-
-</h2>
-
-<p>
-
-Top ranked users this month.
-
-</p>
-
-</div>
-
-<div
-id="leaderboardContainer"
-class="leaderboard-list">
-
-<!-- Firebase -->
-
-</div>
-
-<div class="center">
-
-<a
-href="leaderboard.html"
-class="btn">
-
-View Full Leaderboard
-
-</a>
-
-</div>
-
-</section>
-
-<!-- ======================================================
-    Achievement
-====================================================== -->
-
-<section
-id="achievement">
-
-<div class="section-title">
-
-<h2>
-
-Achievements
-
-</h2>
-
-</div>
-
-<div class="achievement-grid">
-
-<div class="achievement-card">
-
-<h3>
-
-🥇 Gold Badge
-
-</h3>
-
-<p>
-
-Reach Level 25
-
-</p>
-
-</div>
-
-<div class="achievement-card">
-
-<h3>
-
-🔥 Quiz Master
-
-</h3>
-
-<p>
-
-Complete 100 Quizzes
-
-</p>
-
-</div>
-
-<div class="achievement-card">
-
-<h3>
-
-⭐ Genius
-
-</h3>
-
-<p>
-
-95% Accuracy
-
-</p>
-
-</div>
-
-<div class="achievement-card">
-
-<h3>
-
-💎 Diamond
-
-</h3>
-
-<p>
-
-Earn 10000 XP
-
-</p>
+<!-- JS -->
 
 </div>
 
@@ -567,360 +111,16 @@ Earn 10000 XP
 
 </section>
 
-<!-- ======================================================
-    Why Choose Us
-====================================================== -->
+</main>
 
-<section
-id="whyChoose">
+<!-- ========= FOOTER AUTO LOAD ========= -->
 
-<div class="section-title">
-
-<h2>
-
-Why Choose Quiz Of AKTER SIR
-
-</h2>
-
-</div>
-
-<div class="feature-grid">
-
-<div class="feature-card">
-
-<h3>
-
-⚡ Fast
-
-</h3>
-
-<p>
-
-Powered by Firebase.
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<h3>
-
-🔒 Secure
-
-</h3>
-
-<p>
-
-Protected Authentication.
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<h3>
-
-📱 Responsive
-
-</h3>
-
-<p>
-
-Works on every device.
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<h3>
-
-☁ Cloud Database
-
-</h3>
-
-<p>
-
-Realtime Firestore.
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<h3>
-
-🏆 Ranking
-
-</h3>
-
-<p>
-
-Live Leaderboard.
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<h3>
-
-🎯 Daily Challenge
-
-</h3>
-
-<p>
-
-Earn Rewards Daily.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-<!-- ======================================================
-    About Section
-====================================================== -->
-
-<section id="about" class="about">
-
-    <div class="section-title">
-
-        <h2>About Quiz Of AKTER SIR</h2>
-
-        <p>
-            Quiz Of AKTER SIR is a modern online quiz platform built with
-            Firebase and GitHub Pages. Practice thousands of MCQ questions,
-            improve your knowledge, earn XP, unlock achievements and compete
-            with other users on the live leaderboard.
-        </p>
-
-    </div>
-
-    <div class="about-grid">
-
-        <div class="about-card">
-
-            <h3>📚 Thousands of Questions</h3>
-
-            <p>Practice anytime with organized quiz categories.</p>
-
-        </div>
-
-        <div class="about-card">
-
-            <h3>⚡ Fast Performance</h3>
-
-            <p>Powered by Firebase Cloud Firestore.</p>
-
-        </div>
-
-        <div class="about-card">
-
-            <h3>🏆 Live Ranking</h3>
-
-            <p>Compete with users and improve your position.</p>
-
-        </div>
-
-        <div class="about-card">
-
-            <h3>🎯 Daily Rewards</h3>
-
-            <p>Daily Challenge, XP, Coins and Achievement System.</p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ======================================================
-    Contact
-====================================================== -->
-
-<section id="contact" class="contact">
-
-    <div class="section-title">
-
-        <h2>Contact Us</h2>
-
-        <p>Need help? Contact us anytime.</p>
-
-    </div>
-
-    <div class="contact-card">
-
-        <p>
-
-            📱 WhatsApp :
-            <a
-                href="https://wa.me/8801884197276"
-                target="_blank">
-
-                01884197276
-
-            </a>
-
-        </p>
-
-        <p>
-
-            📧 Email :
-            <a
-                href="mailto:aakterhossen80@gmail.com">
-
-                aakterhossen80@gmail.com
-
-            </a>
-
-        </p>
-
-        <p>
-
-            👍 Facebook :
-            <a
-                href="https://www.facebook.com/ahr110"
-                target="_blank">
-
-                AKTER SIR
-
-            </a>
-
-        </p>
-
-    </div>
-
-</section>
-
-<!-- ======================================================
-    Footer
-====================================================== -->
-
-<footer>
-
-    <div class="footer-top">
-
-        <div class="footer-logo">
-
-            <a href="index.html">
-
-                <img
-                    src="logo.svg"
-                    alt="Quiz Of AKTER SIR Logo">
-
-            </a>
-
-            <h2>
-
-                Quiz Of AKTER SIR
-
-            </h2>
-
-        </div>
-
-        <div class="footer-links">
-
-            <a href="index.html">Home</a>
-
-            <a href="login.html">Login</a>
-
-            <a href="register.html">Register</a>
-
-            <a href="leaderboard.html">Leaderboard</a>
-
-            <a href="contact.html">Contact</a>
-
-        </div>
-
-        <div class="footer-social">
-
-            <!-- WhatsApp -->
-
-            <a
-                href="https://wa.me/8801884197276"
-                target="_blank"
-                title="WhatsApp">
-
-                <img
-                    src="https://cdn.simpleicons.org/whatsapp"
-                    alt="WhatsApp">
-
-            </a>
-
-            <!-- Email -->
-
-            <a
-                href="mailto:aakterhossen80@gmail.com"
-                title="Email">
-
-                <img
-                    src="https://cdn.simpleicons.org/gmail"
-                    alt="Email">
-
-            </a>
-
-            <!-- Facebook -->
-
-            <a
-                href="https://www.facebook.com/ahr110"
-                target="_blank"
-                title="Facebook">
-
-                <img
-                    src="https://cdn.simpleicons.org/facebook"
-                    alt="Facebook">
-
-            </a>
-
-        </div>
-
-    </div>
-
-    <hr>
-
-    <div class="footer-bottom">
-
-        <p>
-
-            © 2026 Quiz Of AKTER SIR.
-            All Rights Reserved.
-
-        </p>
-
-        <p>
-
-            Built with ❤️ using
-            HTML, CSS, JavaScript &
-            Firebase.
-
-        </p>
-
-    </div>
-
-</footer>
-
-<!-- ======================================================
-    Main JavaScript
-====================================================== -->
+<div id="footer"></div>
 
 <script type="module" src="firebase-config.js"></script>
 
-<script type="module" src="utils.js"></script>
-
-<script type="module" src="database.js"></script>
-
-<script type="module" src="auth.js"></script>
-
-<script type="module" src="app.js"></script>
+<script src="app.js"></script>
 
 </body>
 
-    </html>
+</html>
