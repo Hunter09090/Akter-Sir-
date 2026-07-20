@@ -255,10 +255,14 @@ async function loadTopThreeUI() {
 
         console.error(error);
 
-        alert(error.message);
+        catch (error) {
 
-    box.innerHTML = error.message;
+    console.error(error);
 
-    }
+    alert(error.code);
+
+    alert(error.message);
+
+}
 
 }
