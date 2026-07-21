@@ -179,12 +179,13 @@ async function loadRecentQuiz(uid) {
 
     catch (error) {
 
-        console.error("Recent Quiz Error :", error);
+        console.error(error);
 
-        box.innerHTML =
-            "<p>Failed to load history.</p>";
+    alert(error.message);
 
-    }
+    box.innerHTML = error.message;
+
+}
 
 }
 
