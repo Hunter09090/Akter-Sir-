@@ -35,7 +35,7 @@ auth.onAuthStateChanged(async (user) => {
         return;
 
     }
-
+    updateUserUI(user);
     document.getElementById("profilePhoto").src =
         user.photoURL || "https://via.placeholder.com/100";
 
