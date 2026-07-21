@@ -572,3 +572,49 @@ main{
     text-decoration:underline;
 
 }
+/* ==========================
+   Recent Quiz
+========================== */
+
+.recent-quiz{
+
+    margin-top:30px;
+
+}
+
+.recent-item{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:12px;
+
+    margin:10px 0;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+}
+
+.recent-left{
+
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+
+}
+
+.recent-score{
+
+    font-weight:700;
+
+}
+
+.recent-time{
+
+    font-size:13px;
+    opacity:.7;
+
+}
