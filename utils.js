@@ -113,3 +113,46 @@ async function copy(text) {
     }
 
 }
+/* =========================
+   Load Header
+========================= */
+
+async function loadHeader() {
+
+    const header =
+        document.getElementById("header");
+
+    if (!header) return;
+
+    const response =
+        await fetch("header.html");
+
+    header.innerHTML =
+        await response.text();
+
+    if (typeof bindHeaderEvents === "function") {
+
+        bindHeaderEvents();
+
+    }
+
+}
+
+/* =========================
+   Load Footer
+========================= */
+
+async function loadFooter() {
+
+    const footer =
+        document.getElementById("footer");
+
+    if (!footer) return;
+
+    const response =
+        await fetch("footer.html");
+
+    footer.innerHTML =
+        await response.text();
+
+}
