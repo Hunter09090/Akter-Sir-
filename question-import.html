@@ -1,351 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<title>Question Import</title>
 
-    <title>Admin Question Import</title>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
 
-    <!-- CSS -->
+<script src="firebase-config.js"></script>
 
-    <link rel="stylesheet"
-          href="style.css">
+<style>
 
-    <!-- Firebase -->
+body{
 
-    
-    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+padding:30px;
 
-    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+}
 
-    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+.container{
 
-    <script src="firebase-config.js"></script>
+max-width:900px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+
+}
+
+h2{
+
+margin-top:0;
+
+}
+
+select,
+textarea,
+button{
+
+width:100%;
+padding:12px;
+margin-top:10px;
+font-size:16px;
+
+}
+
+textarea{
+
+height:400px;
+resize:vertical;
+
+}
+
+button{
+
+cursor:pointer;
+
+}
+
+#status{
+
+margin-top:20px;
+font-weight:bold;
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-    <div class="import-box">
+<div class="container">
 
-        <h1>
+<h2>Admin Question Import</h2>
 
-            📥 Question Import Panel
+<select id="category">
 
-        </h1>
+<option value="সাধারণ জ্ঞান">সাধারণ জ্ঞান</option>
+<option value="বাংলাদেশ">বাংলাদেশ</option>
+<option value="আন্তর্জাতিক">আন্তর্জাতিক</option>
+<option value="ইসলাম">ইসলাম</option>
+<option value="বাংলা">বাংলা</option>
+<option value="ইংরেজি">ইংরেজি</option>
+<option value="গণিত">গণিত</option>
+<option value="বিজ্ঞান">বিজ্ঞান</option>
+<option value="আইসিটি">আইসিটি</option>
+<option value="ধাঁধা">ধাঁধা</option>
+<option value="ইতিহাস">ইতিহাস</option>
+<option value="ভূগোল">ভূগোল</option>
+<option value="খেলাধুলা">খেলাধুলা</option>
+<option value="বিনোদন">বিনোদন</option>
 
-        <p>
+</select>
 
-            Admin Only
+<textarea id="questions" placeholder="Paste Questions Here"></textarea>
 
-        </p>
+<button id="importBtn">
 
-        <hr>
+Import Questions
 
-        <!-- Category -->
+</button>
 
-        <label>
+<div id="status">
 
-            Select Category
+Ready...
 
-        </label>
+</div>
 
-        <br>
-
-        <select id="category">
-                        <option value="সাধারণ জ্ঞান">সাধারণ জ্ঞান</option>
-
-            <option value="বাংলাদেশ">বাংলাদেশ</option>
-
-            <option value="আন্তর্জাতিক">আন্তর্জাতিক</option>
-
-            <option value="ইসলাম">ইসলাম</option>
-
-            <option value="বাংলা">বাংলা</option>
-
-            <option value="ইংরেজি">ইংরেজি</option>
-
-            <option value="গণিত">গণিত</option>
-
-            <option value="বিজ্ঞান">বিজ্ঞান</option>
-
-            <option value="আইসিটি">আইসিটি</option>
-
-            <option value="ধাঁধা">ধাঁধা</option>
-
-            <option value="ইতিহাস">ইতিহাস</option>
-
-            <option value="ভূগোল">ভূগোল</option>
-
-            <option value="খেলাধুলা">খেলাধুলা</option>
-
-            <option value="বিনোদন">বিনোদন</option>
-
-        </select>
-
-        <br><br>
-
-        <label>
-
-            Paste Questions
-
-        </label>
-
-        <br>
-
-        <textarea
-            id="questions"
-            rows="22"
-            placeholder="Paste Questions Here..."></textarea>
-
-        <br><br>
-
-        <button
-            id="importBtn">
-
-            📥 Import Questions
-
-        </button>
-
-        <button
-            id="clearBtn">
-
-            🗑 Clear
-
-        </button>
-
-        <br><br>
-
-        <div id="status">
-
-            Ready...
-
-        </div>
-
-        <br>
-
-        <div id="result">
-
-            Waiting For Import...
-
-        </div>
-
-    </div>
-    <script>
-
-
-
-const category =
-    document.getElementById("category");
+<script>
+    const category =
+document.getElementById("category");
 
 const questions =
-    document.getElementById("questions");
-
-const importBtn =
-    document.getElementById("importBtn");
-
-const clearBtn =
-    document.getElementById("clearBtn");
+document.getElementById("questions");
 
 const status =
-    document.getElementById("status");
+document.getElementById("status");
 
-const result =
-    document.getElementById("result");
+document
+.getElementById("importBtn")
+.onclick = async function () {
 
-/* =========================
-   Clear
-========================= */
+status.innerHTML = "Import Started...";
 
-clearBtn.onclick = () => {
+const text =
+questions.value.trim();
 
-    questions.value = "";
+if (!text) {
 
-    status.innerHTML =
-        "Ready...";
+alert("প্রশ্ন Paste করুন");
 
-    result.innerHTML =
-        "Waiting For Import...";
+return;
+
+}
+
+const blocks =
+text.split("===");
+
+let success = 0;
+
+let duplicate = 0;
+
+let failed = 0;
+
+for (const block of blocks) {
+
+try{
+
+const lines =
+block
+.split("\n")
+.map(x=>x.trim())
+.filter(x=>x);
+
+if(lines.length<6){
+
+failed++;
+
+continue;
+
+}
+
+const question =
+lines[0].replace("Q:","").trim();
+
+const options=[
+
+lines[1].replace("A:","").trim(),
+
+lines[2].replace("B:","").trim(),
+
+lines[3].replace("C:","").trim(),
+
+lines[4].replace("D:","").trim()
+
+];
+
+const answerLetter =
+lines[5]
+.replace("Answer:","")
+.trim()
+.toUpperCase();
+
+const answerMap={
+
+A:options[0],
+
+B:options[1],
+
+C:options[2],
+
+D:options[3]
 
 };
 
-/* =========================
-   Import
-========================= */
+const answer =
+answerMap[answerLetter];
 
-importBtn.onclick = async () => {
+const exists =
+await db
+.collection("questions")
+.where("category","==",category.value)
+.where("question","==",question)
+.limit(1)
+.get();
 
-    alert("Button Clicked");
-    
-    if (!questions.value.trim()) {
+if(!exists.empty){
 
-        alert("প্রশ্ন Paste করুন");
+duplicate++;
 
-        return;
+continue;
 
-    }
+}
 
-    status.innerHTML =
-        "Reading Questions...";
+await db
+.collection("questions")
+.add({
 
-    const blocks =
-        questions.value
-        .trim()
-        .split("===");
+category:category.value,
 
-    let success = 0;
+question,
 
-    let duplicate = 0;
+options,
 
-    let failed = 0;
+answer,
 
-    for (const block of blocks) {
+difficulty:"Easy",
 
-        const lines =
-            block
-            .split("\n")
-            .map(item => item.trim())
-            .filter(item => item);
+createdAt:
+firebase.firestore.FieldValue.serverTimestamp()
 
-        if (lines.length < 6) {
+});
 
-            failed++;
+success++;
 
-            continue;
+status.innerHTML=
+`Imported ${success}`;
 
-        }
+}catch(e){
 
-        const question =
-            lines[0].replace("Q:", "").trim();
+console.error(e);
 
-        const options = [
+failed++;
 
-            lines[1].replace("A:", "").trim(),
+}
 
-            lines[2].replace("B:", "").trim(),
+}
 
-            lines[3].replace("C:", "").trim(),
+status.innerHTML=`
 
-            lines[4].replace("D:", "").trim()
+✅ Done
 
-        ];
+<br><br>
 
-        const answerLetter =
-            lines[5]
-            .replace("Answer:", "")
-            .trim()
-            .toUpperCase();
+Imported : ${success}
 
-        const answerMap = {
+<br>
 
-            A: options[0],
+Duplicate : ${duplicate}
 
-            B: options[1],
+<br>
 
-            C: options[2],
+Failed : ${failed}
 
-            D: options[3]
+`;
 
-        };
-
-        const answer =
-            answerMap[answerLetter];
-
-        if (!answer) {
-
-            failed++;
-
-            continue;
-
-        }
-                /* =========================
-           Duplicate Check
-        ========================= */
-
-        const duplicateDoc =
-            await db
-                .collection("questions")
-                .where("category", "==", category.value)
-                .where("question", "==", question)
-                .limit(1)
-                .get();
-
-        if (!duplicateDoc.empty) {
-
-            duplicate++;
-
-            continue;
-
-        }
-
-        /* =========================
-           Save Question
-        ========================= */
-
-        try {
-
-            await db
-                .collection("questions")
-                .add({
-
-                    category:
-                        category.value,
-
-                    question,
-
-                    options,
-
-                    answer,
-
-                    difficulty: "Easy",
-
-                    createdAt:
-                        firebase.firestore.FieldValue.serverTimestamp()
-
-                });
-
-            success++;
-
-            status.innerHTML =
-                `Imported : ${success}`;
-
-        }
-
-        catch (error) {
-
-            console.error(error);
-
-            failed++;
-
-        }
-
-    }
-
-    result.innerHTML = `
-
-        <h3>Import Completed</h3>
-
-        <p>✅ Imported : ${success}</p>
-
-        <p>⚠ Duplicate : ${duplicate}</p>
-
-        <p>❌ Failed : ${failed}</p>
-
-    `;
-
-    status.innerHTML =
-        "Finished";
+questions.value="";
 
 };
 
 </script>
-<script>
-alert("HTML Script Working");
-</script>
+
 </body>
 
 </html>
