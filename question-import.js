@@ -8,7 +8,7 @@
    Firestore
 ========================= */
 
-const db = firebase.firestore();
+
 
 const QUESTIONS = "questions";
 
