@@ -24,7 +24,7 @@ async function login() {
     try {
 
         const result =
-            await auth.signInWithRedirect(provider);
+            await auth.signInWithPopup(provider);
 
         currentUser = result.user;
 
