@@ -5,19 +5,25 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <title>Question Import</title>
+    <title>
 
-    <link rel="stylesheet"
-          href="style.css">
+        Admin Question Import
+
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
 
     <!-- Firebase -->
 
-    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
-    
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
 
@@ -27,154 +33,180 @@
 
 <body>
 
-    <div class="import-box">
+    <div class="import-wrapper">
 
-        <h2>
+        <div class="import-card">
 
-            Question Import Panel
+            <h1>
 
-        </h2>
+                📥 Question Import Panel
 
-        <select id="category">
+            </h1>
 
-            <option value="সাধারণ জ্ঞান">সাধারণ জ্ঞান</option>
+            <p>
 
-            <option value="বাংলাদেশ">বাংলাদেশ</option>
+                Admin Only
 
-            <option value="আন্তর্জাতিক">আন্তর্জাতিক</option>
+            </p>
 
-            <option value="ইসলাম">ইসলাম</option>
+            <!-- Category -->
 
-            <option value="বাংলা">বাংলা</option>
+            <label for="category">
 
-            <option value="ইংরেজি">ইংরেজি</option>
+                Select Category
 
-            <option value="গণিত">গণিত</option>
+            </label>
 
-            <option value="বিজ্ঞান">বিজ্ঞান</option>
+            <select id="category">
 
-            <option value="আইসিটি">আইসিটি</option>
+                <option value="সাধারণ জ্ঞান">সাধারণ জ্ঞান</option>
 
-            <option value="ধাঁধা">ধাঁধা</option>
+                <option value="বাংলাদেশ">বাংলাদেশ</option>
 
-            <option value="ইতিহাস">ইতিহাস</option>
+                <option value="আন্তর্জাতিক">আন্তর্জাতিক</option>
 
-            <option value="ভূগোল">ভূগোল</option>
+                <option value="ইসলাম">ইসলাম</option>
 
-            <option value="খেলাধুলা">খেলাধুলা</option>
+                <option value="বাংলা">বাংলা</option>
 
-            <option value="বিনোদন">বিনোদন</option>
+                <option value="ইংরেজি">ইংরেজি</option>
 
-        </select>
+                <option value="গণিত">গণিত</option>
 
-        <br><br>
+                <option value="বিজ্ঞান">বিজ্ঞান</option>
 
-        <textarea id="questions"
+                <option value="আইসিটি">আইসিটি</option>
 
-                  rows="20"
+                <option value="ধাঁধা">ধাঁধা</option>
 
-                  placeholder="প্রশ্ন এখানে Paste করুন..."></textarea>
+                <option value="ইতিহাস">ইতিহাস</option>
 
-        <br><br>
+                <option value="ভূগোল">ভূগোল</option>
 
-        <button onclick="importQuestions()">
+                <option value="খেলাধুলা">খেলাধুলা</option>
 
-            Import Questions
+                <option value="বিনোদন">বিনোদন</option>
 
-        </button>
+            </select>
 
-        <p id="result"></p>
+            <br><br>
+
+            <!-- Question Input -->
+
+            <label for="questions">
+
+                Paste Questions
+
+            </label>
+
+            <textarea
+                id="questions"
+                rows="22"
+                spellcheck="false"
+                placeholder="Paste your questions here..."></textarea>
+                            <br>
+
+            <!-- Action Buttons -->
+
+            <div class="import-actions">
+
+                <button
+                    id="importBtn"
+                    type="button">
+
+                    📥 Import Questions
+
+                </button>
+
+                <button
+                    id="clearBtn"
+                    type="button">
+
+                    🗑 Clear
+
+                </button>
+
+            </div>
+
+            <br>
+
+            <!-- Import Status -->
+
+            <div
+                id="statusBox"
+                class="status-box">
+
+                Ready to Import...
+
+            </div>
+
+            <br>
+
+            <!-- Import Result -->
+
+            <div
+                id="resultBox"
+                class="result-box">
+
+                <h3>
+
+                    Import Report
+
+                </h3>
+
+                <p>
+
+                    Total :
+                    <span id="totalCount">
+
+                        0
+
+                    </span>
+
+                </p>
+
+                <p>
+
+                    Imported :
+                    <span id="successCount">
+
+                        0
+
+                    </span>
+
+                </p>
+
+                <p>
+
+                    Duplicate :
+                    <span id="duplicateCount">
+
+                        0
+
+                    </span>
+
+                </p>
+
+                <p>
+
+                    Failed :
+                    <span id="failedCount">
+
+                        0
+
+                    </span>
+
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
-        <script>
 
-        async function importQuestions() {
+    <!-- JavaScript -->
 
-            const category =
-                document.getElementById("category").value;
-
-            const text =
-                document.getElementById("questions").value.trim();
-
-            if (!text) {
-
-                alert("প্রশ্ন লিখুন");
-
-                return;
-
-            }
-
-            const blocks = text.split("\n\n");
-
-            let count = 0;
-
-            for (const block of blocks) {
-
-                const lines = block
-                    .split("\n")
-                    .map(item => item.trim())
-                    .filter(Boolean);
-
-                if (lines.length < 6) continue;
-
-                const question = lines[0]
-                    .replace("প্রশ্ন:", "")
-                    .trim();
-
-                const options = [
-
-                    lines[1].replace(/^A\.\s*/, ""),
-
-                    lines[2].replace(/^B\.\s*/, ""),
-
-                    lines[3].replace(/^C\.\s*/, ""),
-
-                    lines[4].replace(/^D\.\s*/, "")
-
-                ];
-
-                const answerLetter = lines[5]
-                    .replace("Answer:", "")
-                    .trim()
-                    .toUpperCase();
-
-                const map = {
-
-                    A: options[0],
-                    B: options[1],
-                    C: options[2],
-                    D: options[3]
-
-                };
-
-                await db.collection("questions").add({
-
-                    category,
-
-                    question,
-
-                    options,
-
-                    answer: map[answerLetter],
-
-                    difficulty: "Easy",
-
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-
-                });
-
-                count++;
-
-            }
-
-            document.getElementById("result").innerHTML =
-                `✅ ${count} টি প্রশ্ন সফলভাবে Import হয়েছে।`;
-
-            document.getElementById("questions").value = "";
-
-        }
-
-    </script>
+    <script src="question-import.js"></script>
 
 </body>
 
