@@ -253,15 +253,11 @@ async function loadTopThreeUI() {
 
     catch (error) {
 
-        console.error(error);
+    console.log(error);
 
-        catch (error) {
+    alert("Code: " + error.code);
 
-    console.error(error);
-
-    alert(error.code);
-
-    alert(error.message);
+    alert("Message: " + error.message);
 
 }
 
