@@ -1,3 +1,4 @@
+document.body.style.background = "red";
 alert("question-import.js Loaded");
 /* =====================================
    File : question-import.js
