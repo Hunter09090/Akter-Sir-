@@ -76,6 +76,8 @@ async function loadProfileStats(uid) {
         document.getElementById("quizPlayed").textContent =
             total;
 
+       await loadRecentQuiz(uid);
+       
     }
 
     catch (error) {
