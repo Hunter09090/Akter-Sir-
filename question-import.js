@@ -1,5 +1,6 @@
 /* =====================================
    File : question-import.js
+   Version : Final
    Part : 1
 ===================================== */
 
@@ -57,12 +58,12 @@ function resetReport() {
     failedCount.textContent = "0";
 
     statusBox.textContent =
-        "Ready to Import";
+        "Ready...";
 
 }
 
 /* =========================
-   Clear
+   Clear Input
 ========================= */
 
 clearBtn.addEventListener("click", () => {
@@ -99,7 +100,7 @@ async function importQuestions() {
 
     if (!text) {
 
-        alert("প্রশ্ন Paste করুন।");
+        alert("প্রশ্ন Paste করুন");
 
         return;
 
@@ -108,27 +109,26 @@ async function importQuestions() {
     statusBox.textContent =
         "Reading Questions...";
 
-}
-/* =========================
-   Split Question Blocks
-========================= */
-
-    const blocks = text
+    const blocks =
+        text
         .split("===")
         .map(item => item.trim())
-        .filter(item => item.length > 0);
+        .filter(item => item.length);
 
     totalCount.textContent =
         blocks.length;
 
     const parsedQuestions = [];
+       /* =========================
+       Parse Questions
+    ========================= */
 
     for (const block of blocks) {
 
         const lines = block
             .split("\n")
             .map(item => item.trim())
-            .filter(item => item);
+            .filter(item => item.length);
 
         if (lines.length < 6) {
 
@@ -136,29 +136,36 @@ async function importQuestions() {
 
         }
 
-        const questionLine = lines.find(line =>
-            line.startsWith("Q:")
-        );
+        const questionLine =
+            lines.find(item =>
+                item.startsWith("Q:")
+            );
 
-        const optionA = lines.find(line =>
-            line.startsWith("A:")
-        );
+        const optionA =
+            lines.find(item =>
+                item.startsWith("A:")
+            );
 
-        const optionB = lines.find(line =>
-            line.startsWith("B:")
-        );
+        const optionB =
+            lines.find(item =>
+                item.startsWith("B:")
+            );
 
-        const optionC = lines.find(line =>
-            line.startsWith("C:")
-        );
+        const optionC =
+            lines.find(item =>
+                item.startsWith("C:")
+            );
 
-        const optionD = lines.find(line =>
-            line.startsWith("D:")
-        );
+        const optionD =
+            lines.find(item =>
+                item.startsWith("D:")
+            );
 
-        const answerLine = lines.find(line =>
-            line.toLowerCase().startsWith("answer:")
-        );
+        const answerLine =
+            lines.find(item =>
+                item.toLowerCase()
+                    .startsWith("answer:")
+            );
 
         if (
             !questionLine ||
@@ -174,7 +181,9 @@ async function importQuestions() {
         }
 
         const question =
-            questionLine.replace(/^Q:/, "").trim();
+            questionLine
+                .replace(/^Q:/, "")
+                .trim();
 
         const options = [
 
@@ -190,9 +199,9 @@ async function importQuestions() {
 
         const answerLetter =
             answerLine
-            .replace(/^Answer:/i, "")
-            .trim()
-            .toUpperCase();
+                .replace(/^Answer:/i, "")
+                .trim()
+                .toUpperCase();
 
         const answerMap = {
 
@@ -220,7 +229,8 @@ async function importQuestions() {
 
             options,
 
-            answer: answerMap[answerLetter]
+            answer:
+                answerMap[answerLetter]
 
         });
 
@@ -228,9 +238,15 @@ async function importQuestions() {
 
     statusBox.textContent =
         `${parsedQuestions.length} Questions Parsed...`;
-/* =========================
-   Load Existing Questions
-========================= */
+       /* =========================
+       Load Existing Questions
+    ========================= */
+
+    statusBox.textContent =
+        "Checking Duplicate Questions...";
+
+    const existingQuestions =
+        new Set();
 
     const snapshot =
         await db
@@ -238,15 +254,17 @@ async function importQuestions() {
             .where("category", "==", category)
             .get();
 
-    const existingQuestions =
-        new Set();
-
     snapshot.forEach(doc => {
 
-        const item = doc.data();
+        const data =
+            doc.data();
 
         existingQuestions.add(
-            item.question.trim().toLowerCase()
+
+            data.question
+                .trim()
+                .toLowerCase()
+
         );
 
     });
@@ -257,40 +275,50 @@ async function importQuestions() {
 
     let failed = 0;
 
+    statusBox.textContent =
+        "Importing Questions...";
+
     /* =========================
        Import Loop
     ========================= */
 
     for (const item of parsedQuestions) {
 
-        const key =
-            item.question
-                .trim()
-                .toLowerCase();
-
-        if (existingQuestions.has(key)) {
-
-            duplicate++;
-
-            continue;
-
-        }
-
         try {
+
+            const key =
+                item.question
+                    .trim()
+                    .toLowerCase();
+
+            if (
+                existingQuestions.has(key)
+            ) {
+
+                duplicate++;
+
+                continue;
+
+            }
 
             await db
                 .collection(QUESTIONS)
                 .add({
 
-                    category: item.category,
+                    category:
+                        item.category,
 
-                    question: item.question,
+                    question:
+                        item.question,
 
-                    options: item.options,
+                    options:
+                        item.options,
 
-                    answer: item.answer,
+                    answer:
+                        item.answer,
 
-                    difficulty: "Easy",
+                    difficulty:
+                        "Easy",
 
                     createdAt:
                         firebase.firestore.FieldValue.serverTimestamp()
@@ -302,6 +330,7 @@ async function importQuestions() {
             success++;
 
             statusBox.textContent =
+
                 `Imported ${success} / ${parsedQuestions.length}`;
 
         }
@@ -315,9 +344,8 @@ async function importQuestions() {
         }
 
     }
-
-    /* =========================
-       Report
+       /* =========================
+       Import Report
     ========================= */
 
     successCount.textContent =
@@ -330,8 +358,26 @@ async function importQuestions() {
         failed;
 
     statusBox.textContent =
-        "✅ Import Completed";
+        "✅ Import Completed Successfully";
 
-    questionInput.value = "";
+    if (success > 0) {
+
+        questionInput.value = "";
+
+    }
+
+    alert(
+
+`Import Complete!
+
+Total     : ${parsedQuestions.length}
+
+Imported : ${success}
+
+Duplicate : ${duplicate}
+
+Failed     : ${failed}`
+
+    );
 
 }
