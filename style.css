@@ -554,3 +554,21 @@ main{
     font-weight:bold;
 
 }
+/* ==========================
+   Profile Button
+========================== */
+
+.profile-btn{
+
+    display:inline-block;
+    margin-top:4px;
+    font-size:12px;
+    text-decoration:none;
+
+}
+
+.profile-btn:hover{
+
+    text-decoration:underline;
+
+}
