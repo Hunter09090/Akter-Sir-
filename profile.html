@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div id="header"></div>
+
+<main class="profile-page">
+
+    <div class="profile-card">
+
+        <img
+            id="profilePhoto"
+            src="https://via.placeholder.com/100"
+            alt="Profile">
+
+        <h2 id="profileName">
+
+            Guest
+
+        </h2>
+
+        <p id="profileEmail">
+
+            -
+
+        </p>
+
+    </div>
+
+    <div class="profile-stats">
+
+        <div class="stat-box">
+
+            <h3 id="highestScore">
+
+                0
+
+            </h3>
+
+            <p>Highest Score</p>
+
+        </div>
+
+        <div class="stat-box">
+
+            <h3 id="quizPlayed">
+
+                0
+
+            </h3>
+
+            <p>Total Quiz</p>
+
+        </div>
+
+    </div>
+
+</main>
+
+<div id="footer"></div>
+
+<script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+<script defer src="firebase-config.js"></script>
+<script defer src="firebase.js"></script>
+<script defer src="utils.js"></script>
+<script defer src="profile.js"></script>
+
+</body>
+
+</html>
