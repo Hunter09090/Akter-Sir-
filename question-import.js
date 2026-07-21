@@ -1,17 +1,20 @@
-document.body.style.background = "red";
-alert("question-import.js Loaded");
 /* =====================================
    File : question-import.js
    Part : 1
 ===================================== */
 
-// Firestore
+/* =========================
+   Firestore
+========================= */
+
 const db = firebase.firestore();
 
-// Collection
 const QUESTIONS = "questions";
 
-// Elements
+/* =========================
+   Elements
+========================= */
+
 const categorySelect =
     document.getElementById("category");
 
@@ -54,12 +57,12 @@ function resetReport() {
     failedCount.textContent = "0";
 
     statusBox.textContent =
-        "Ready to Import...";
+        "Ready to Import";
 
 }
 
 /* =========================
-   Clear Text
+   Clear
 ========================= */
 
 clearBtn.addEventListener("click", () => {
@@ -71,12 +74,12 @@ clearBtn.addEventListener("click", () => {
 });
 
 /* =========================
-   Start Import
+   Import Button
 ========================= */
 
-importBtn.addEventListener("click", () => {
+importBtn.addEventListener("click", async () => {
 
-    importQuestions();
+    await importQuestions();
 
 });
 
@@ -107,16 +110,146 @@ async function importQuestions() {
 
 }
 /* =========================
-   Parse Questions
+   Split Question Blocks
 ========================= */
 
     const blocks = text
         .split("===")
         .map(item => item.trim())
-        .filter(item => item.length);
+        .filter(item => item.length > 0);
 
     totalCount.textContent =
         blocks.length;
+
+    const parsedQuestions = [];
+
+    for (const block of blocks) {
+
+        const lines = block
+            .split("\n")
+            .map(item => item.trim())
+            .filter(item => item);
+
+        if (lines.length < 6) {
+
+            continue;
+
+        }
+
+        const questionLine = lines.find(line =>
+            line.startsWith("Q:")
+        );
+
+        const optionA = lines.find(line =>
+            line.startsWith("A:")
+        );
+
+        const optionB = lines.find(line =>
+            line.startsWith("B:")
+        );
+
+        const optionC = lines.find(line =>
+            line.startsWith("C:")
+        );
+
+        const optionD = lines.find(line =>
+            line.startsWith("D:")
+        );
+
+        const answerLine = lines.find(line =>
+            line.toLowerCase().startsWith("answer:")
+        );
+
+        if (
+            !questionLine ||
+            !optionA ||
+            !optionB ||
+            !optionC ||
+            !optionD ||
+            !answerLine
+        ) {
+
+            continue;
+
+        }
+
+        const question =
+            questionLine.replace(/^Q:/, "").trim();
+
+        const options = [
+
+            optionA.replace(/^A:/, "").trim(),
+
+            optionB.replace(/^B:/, "").trim(),
+
+            optionC.replace(/^C:/, "").trim(),
+
+            optionD.replace(/^D:/, "").trim()
+
+        ];
+
+        const answerLetter =
+            answerLine
+            .replace(/^Answer:/i, "")
+            .trim()
+            .toUpperCase();
+
+        const answerMap = {
+
+            A: options[0],
+
+            B: options[1],
+
+            C: options[2],
+
+            D: options[3]
+
+        };
+
+        if (!answerMap[answerLetter]) {
+
+            continue;
+
+        }
+
+        parsedQuestions.push({
+
+            category,
+
+            question,
+
+            options,
+
+            answer: answerMap[answerLetter]
+
+        });
+
+    }
+
+    statusBox.textContent =
+        `${parsedQuestions.length} Questions Parsed...`;
+/* =========================
+   Load Existing Questions
+========================= */
+
+    const snapshot =
+        await db
+            .collection(QUESTIONS)
+            .where("category", "==", category)
+            .get();
+
+    const existingQuestions =
+        new Set();
+
+    snapshot.forEach(doc => {
+
+        const item = doc.data();
+
+        existingQuestions.add(
+            item.question.trim().toLowerCase()
+        );
+
+    });
 
     let success = 0;
 
@@ -124,139 +257,38 @@ async function importQuestions() {
 
     let failed = 0;
 
-    for (const block of blocks) {
+    /* =========================
+       Import Loop
+    ========================= */
+
+    for (const item of parsedQuestions) {
+
+        const key =
+            item.question
+                .trim()
+                .toLowerCase();
+
+        if (existingQuestions.has(key)) {
+
+            duplicate++;
+
+            continue;
+
+        }
 
         try {
-
-            const lines = block
-                .split("\n")
-                .map(item => item.trim())
-                .filter(item => item);
-
-            const question =
-                lines.find(line =>
-                    line.startsWith("Q:") ||
-                    line.startsWith("প্রশ্ন:")
-                );
-
-            const optionA =
-                lines.find(line =>
-                    line.startsWith("A:")
-                );
-
-            const optionB =
-                lines.find(line =>
-                    line.startsWith("B:")
-                );
-
-            const optionC =
-                lines.find(line =>
-                    line.startsWith("C:")
-                );
-
-            const optionD =
-                lines.find(line =>
-                    line.startsWith("D:")
-                );
-
-            const answer =
-                lines.find(line =>
-                    line.toLowerCase().startsWith("answer:")
-                );
-
-            if (
-                !question ||
-                !optionA ||
-                !optionB ||
-                !optionC ||
-                !optionD ||
-                !answer
-            ) {
-
-                failed++;
-
-                continue;
-
-            }
-
-            const questionText =
-                question.replace(/^Q:|^প্রশ্ন:/, "").trim();
-
-            const options = [
-
-                optionA.replace(/^A:/, "").trim(),
-
-                optionB.replace(/^B:/, "").trim(),
-
-                optionC.replace(/^C:/, "").trim(),
-
-                optionD.replace(/^D:/, "").trim()
-
-            ];
-
-            const answerLetter =
-                answer
-                .replace(/^Answer:/i, "")
-                .trim()
-                .toUpperCase();
-
-            const answerMap = {
-
-                A: options[0],
-
-                B: options[1],
-
-                C: options[2],
-
-                D: options[3]
-
-            };
-                      const finalAnswer =
-                answerMap[answerLetter];
-
-            if (!finalAnswer) {
-
-                failed++;
-
-                continue;
-
-            }
-
-            /* =========================
-               Duplicate Check
-            ========================= */
-
-            const duplicateSnapshot =
-                await db
-                    .collection(QUESTIONS)
-                    .where("category", "==", category)
-                    .where("question", "==", questionText)
-                    .limit(1)
-                    .get();
-
-            if (!duplicateSnapshot.empty) {
-
-                duplicate++;
-
-                continue;
-
-            }
-
-            /* =========================
-               Save Question
-            ========================= */
 
             await db
                 .collection(QUESTIONS)
                 .add({
 
-                    category,
+                    category: item.category,
 
-                    question: questionText,
+                    question: item.question,
 
-                    options,
+                    options: item.options,
 
-                    answer: finalAnswer,
+                    answer: item.answer,
 
                     difficulty: "Easy",
 
@@ -265,10 +297,12 @@ async function importQuestions() {
 
                 });
 
+            existingQuestions.add(key);
+
             success++;
 
             statusBox.textContent =
-                `Importing ${success}/${blocks.length}...`;
+                `Imported ${success} / ${parsedQuestions.length}`;
 
         }
 
@@ -283,7 +317,7 @@ async function importQuestions() {
     }
 
     /* =========================
-       Import Report
+       Report
     ========================= */
 
     successCount.textContent =
@@ -300,4 +334,4 @@ async function importQuestions() {
 
     questionInput.value = "";
 
-                  }
+}
