@@ -287,18 +287,7 @@ importBtn.onclick = async () => {
         ========================= */
 
         try {
-catch (error) {
 
-    alert(
-        "Firestore Error:\n\n" +
-        error.message
-    );
-
-    console.error(error);
-
-    failed++;
-
-}
             await db
                 .collection("questions")
                 .add({
