@@ -8,9 +8,17 @@
 
 async function initProfile() {
 
+    async function initProfile() {
+
     await loadHeader();
 
     await loadFooter();
+
+    if (typeof bindHeaderEvents === "function") {
+
+        bindHeaderEvents();
+
+    }
 
 }
 
