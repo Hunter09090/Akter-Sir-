@@ -491,7 +491,74 @@ async function finishQuiz(){
 
     document.getElementById("finalScore").textContent =
     score;
+/* =====================================
+   Level Badge
+===================================== */
 
+const badge =
+document.getElementById("levelBadge");
+
+const percentage =
+Math.round(
+
+(score / quizQuestions.length)
+
+*100
+
+);
+
+badge.className =
+"level-badge";
+
+if(percentage>=90){
+
+    badge.innerHTML =
+    "🏆 Expert";
+
+    badge.classList.add(
+    "level-expert");
+
+}
+
+else if(percentage>=70){
+
+    badge.innerHTML =
+    "🥇 Advanced";
+
+    badge.classList.add(
+    "level-advanced");
+
+}
+
+else if(percentage>=50){
+
+    badge.innerHTML =
+    "🥈 Intermediate";
+
+    badge.classList.add(
+    "level-intermediate");
+
+}
+
+else if(percentage>=30){
+
+    badge.innerHTML =
+    "🥉 Beginner";
+
+    badge.classList.add(
+    "level-beginner");
+
+}
+
+else{
+
+    badge.innerHTML =
+    "📘 Practice More";
+
+    badge.classList.add(
+    "level-practice");
+
+}
     console.log({
 
         correct,
