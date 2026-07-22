@@ -237,18 +237,21 @@ function renderCategories() {
 
     container.innerHTML = "";
 
-    categories.forEach(category => {
+    categories.forEach((category, index) => {
 
         container.innerHTML += `
 
-            <div class="category-card"
-                 onclick="startQuiz('${category}')">
+        <div class="category-card"
 
-                <h3>${category}</h3>
+             style="animation-delay:${index * 0.08}s"
 
-                <p>Start Quiz</p>
+             onclick="startQuiz('${category}')">
 
-            </div>
+            <h3>${category}</h3>
+
+            <p>🚀 Start Quiz</p>
+
+        </div>
 
         `;
 
