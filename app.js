@@ -347,27 +347,7 @@ document.addEventListener("click",(e)=>{
 
 });
 
-/* =========================
-   Init
-========================= */
 
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    ()=>{
-
-        renderCategories();
-
-        setTimeout(()=>{
-
-            animateCategories();
-
-        },100);
-
-    }
-
-);
 /* =====================================
    Confetti Animation
 ===================================== */
