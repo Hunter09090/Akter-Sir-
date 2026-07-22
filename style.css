@@ -1022,3 +1022,60 @@ button{
     }
 
 }
+/* =====================================
+   Level Badge
+===================================== */
+
+.level-badge{
+
+    margin-top:20px;
+
+    padding:12px 20px;
+
+    border-radius:30px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    color:#fff;
+
+    background:#3498db;
+
+    animation:zoomIn .5s ease;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+
+}
+
+.level-expert{
+
+    background:#f39c12;
+
+}
+
+.level-advanced{
+
+    background:#27ae60;
+
+}
+
+.level-intermediate{
+
+    background:#2980b9;
+
+}
+
+.level-beginner{
+
+    background:#8e44ad;
+
+}
+
+.level-practice{
+
+    background:#7f8c8d;
+
+}
