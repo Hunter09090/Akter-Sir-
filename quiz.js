@@ -866,3 +866,10 @@ https://hunter09090.github.io/Akter-Sir-/`;
     }
 
 }
+/* =====================================
+   Share Button
+===================================== */
+
+document
+.getElementById("shareBtn")
+.addEventListener("click", shareScore);
