@@ -820,3 +820,49 @@ console.log(
 "✅ quiz.js Final Loaded Successfully"
 
 );
+/* =====================================
+   Share Score
+===================================== */
+
+async function shareScore() {
+
+    const shareText =
+
+`🎉 আমি Quiz Of AKTER SIR-এ ${finalScore} Score করেছি!
+
+✅ Correct : ${finalCorrect}
+❌ Wrong : ${finalWrong}
+
+তুমিও খেলো 👇
+
+https://hunter09090.github.io/Akter-Sir-/`;
+
+    if (navigator.share) {
+
+        try {
+
+            await navigator.share({
+
+                title: "Quiz Of AKTER SIR",
+
+                text: shareText
+
+            });
+
+        }
+
+        catch (error) {
+
+            console.log(error);
+
+        }
+
+    } else {
+
+        await navigator.clipboard.writeText(shareText);
+
+        alert("✅ Score copied to clipboard!");
+
+    }
+
+}
