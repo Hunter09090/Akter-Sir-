@@ -465,7 +465,16 @@ async function finishQuiz(){
     });
 
     const score = correct;
+/* ==========================
+   Save Final Result
+========================== */
 
+finalCorrect = correct;
+
+finalWrong = wrong;
+
+finalScore = score;
+   
     try{
 
         await saveLeaderboard({
