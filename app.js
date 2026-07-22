@@ -20,13 +20,17 @@ async function initApp() {
 
     await loadLayout();
 
-    startIntro();
+startIntro();
 
-   renderCategories();
+setTimeout(()=>{
+
+    renderCategories();
+
+    animateCategories();
+
+},2600);
 
 loadTopThreeUI();
-   
-}
 
 /* =========================
    Intro Animation
