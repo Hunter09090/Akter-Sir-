@@ -355,3 +355,122 @@ document.addEventListener(
     }
 
 );
+/* =====================================
+   Confetti Animation
+===================================== */
+
+const canvas =
+document.getElementById("confettiCanvas");
+
+const ctx =
+canvas.getContext("2d");
+
+let confetti = [];
+
+function resizeCanvas(){
+
+    canvas.width =
+    window.innerWidth;
+
+    canvas.height =
+    window.innerHeight;
+
+}
+
+window.addEventListener(
+
+"resize",
+
+resizeCanvas
+
+);
+
+resizeCanvas();
+
+function startConfetti(){
+
+    confetti=[];
+
+    for(let i=0;i<180;i++){
+
+        confetti.push({
+
+            x:Math.random()*canvas.width,
+
+            y:-20,
+
+            r:4+Math.random()*6,
+
+            d:Math.random()*6+2,
+
+            color:
+
+            `hsl(${Math.random()*360},100%,50%)`
+
+        });
+
+    }
+
+    animateConfetti();
+
+}
+
+function animateConfetti(){
+
+    ctx.clearRect(
+
+        0,
+
+        0,
+
+        canvas.width,
+
+        canvas.height
+
+    );
+
+    confetti.forEach(c=>{
+
+        ctx.beginPath();
+
+        ctx.fillStyle=c.color;
+
+        ctx.arc(
+
+            c.x,
+
+            c.y,
+
+            c.r,
+
+            0,
+
+            Math.PI*2
+
+        );
+
+        ctx.fill();
+
+        c.y+=c.d;
+
+    });
+
+    confetti=
+
+    confetti.filter(
+
+        c=>c.y<canvas.height+20
+
+    );
+
+    if(confetti.length){
+
+        requestAnimationFrame(
+
+            animateConfetti
+
+        );
+
+    }
+
+}
