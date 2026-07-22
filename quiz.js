@@ -624,3 +624,114 @@ function resetQuiz(){
     hideAnswerStatus();
 
    }
+/* =====================================
+   File : quiz.js
+   Final Professional Version
+   Part : 7
+===================================== */
+
+/* =====================================
+   Answer Status
+===================================== */
+
+function showAnswerStatus(message,type){
+
+    if(!answerStatus) return;
+
+    answerStatus.className =
+    "answer-status";
+
+    answerStatus.classList.add(type);
+
+    answerStatus.classList.remove("hidden");
+
+    answerStatus.textContent = message;
+
+}
+
+/* =====================================
+   Hide Status
+===================================== */
+
+function hideAnswerStatus(){
+
+    if(!answerStatus) return;
+
+    answerStatus.className =
+    "answer-status hidden";
+
+}
+
+/* =====================================
+   Play Sound
+===================================== */
+
+function playCorrectSound(){
+
+    if(!correctSound) return;
+
+    correctSound.pause();
+
+    correctSound.currentTime = 0;
+
+    correctSound.play()
+
+    .catch(()=>{});
+
+}
+
+function playWrongSound(){
+
+    if(!wrongSound) return;
+
+    wrongSound.pause();
+
+    wrongSound.currentTime = 0;
+
+    wrongSound.play()
+
+    .catch(()=>{});
+
+}
+
+/* =====================================
+   Enable / Disable Buttons
+===================================== */
+
+function enableButtons(){
+
+    document
+
+    .querySelectorAll(".option-btn")
+
+    .forEach(btn=>{
+
+        btn.disabled = false;
+
+    });
+
+}
+
+function disableButtons(){
+
+    document
+
+    .querySelectorAll(".option-btn")
+
+    .forEach(btn=>{
+
+        btn.disabled = true;
+
+    });
+
+}
+
+/* =====================================
+   End
+===================================== */
+
+console.log(
+
+"✅ quiz.js Final Loaded Successfully"
+
+);
