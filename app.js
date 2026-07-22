@@ -22,13 +22,13 @@ async function initApp() {
 
 startIntro();
 
-setTimeout(()=>{
+renderCategories();
 
-    renderCategories();
+setTimeout(() => {
 
     animateCategories();
 
-},2600);
+}, 2600);
 
 loadTopThreeUI();
 
