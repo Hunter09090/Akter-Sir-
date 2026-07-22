@@ -259,4 +259,99 @@ function renderCategories() {
 /* =========================
    Placeholder
 ========================= */
+/* =====================================
+   Premium Animation Pack
+   Part 3
+===================================== */
 
+/* =========================
+   Website Load Animation
+========================= */
+
+window.addEventListener("load",()=>{
+
+    document.body.classList.add("loaded");
+
+});
+
+/* =========================
+   Category Animation
+========================= */
+
+function animateCategories(){
+
+    const cards =
+
+    document.querySelectorAll(
+
+        ".category-card"
+
+    );
+
+    cards.forEach((card,index)=>{
+
+        card.style.animationDelay =
+
+        `${index * 0.08}s`;
+
+    });
+
+}
+
+/* =========================
+   Ripple Effect
+========================= */
+
+document.addEventListener("click",(e)=>{
+
+    const btn =
+
+    e.target.closest("button");
+
+    if(!btn) return;
+
+    const ripple =
+
+    document.createElement("span");
+
+    ripple.className =
+
+    "ripple";
+
+    const rect =
+
+    btn.getBoundingClientRect();
+
+    ripple.style.left =
+
+    `${e.clientX - rect.left}px`;
+
+    ripple.style.top =
+
+    `${e.clientY - rect.top}px`;
+
+    btn.appendChild(ripple);
+
+    setTimeout(()=>{
+
+        ripple.remove();
+
+    },600);
+
+});
+
+/* =========================
+   Init
+========================= */
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    ()=>{
+
+        animateCategories();
+
+    }
+
+);
