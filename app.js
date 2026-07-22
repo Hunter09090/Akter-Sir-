@@ -20,17 +20,19 @@ async function initApp() {
 
     await loadLayout();
 
-startIntro();
+    startIntro();
 
-renderCategories();
+    renderCategories();
 
-setTimeout(() => {
+    loadTopThreeUI();
 
-    animateCategories();
+    setTimeout(() => {
 
-}, 2600);
+        animateCategories();
 
-loadTopThreeUI();
+    }, 2600);
+
+}   // ← এটা খুব গুরুত্বপূর্ণ
 
 /* =========================
    Intro Animation
