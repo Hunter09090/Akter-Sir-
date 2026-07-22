@@ -1,39 +1,52 @@
 /* =====================================
    File : questions.js
+   Final Professional Version
    Part : 1
 ===================================== */
 
+/* =====================================
+   Question Storage
+===================================== */
+
 let allQuestions = [];
-let quizQuestions = [];
 
-/* =========================
+/* =====================================
    Load Questions
-========================= */
+===================================== */
 
-async function loadQuestions(category) {
+async function loadQuestions(category){
 
-    try {
+    try{
 
         const snapshot = await db
-            .collection(QUESTIONS)
-            .where("category", "==", category)
-            .get();
 
-        allQuestions = snapshot.docs.map(doc => ({
-            id: doc.id,
+        .collection(QUESTIONS)
+
+        .where("category","==",category)
+
+        .get();
+
+        allQuestions = snapshot.docs.map(doc=>({
+
+            id:doc.id,
+
             ...doc.data()
+
         }));
 
-        // Random Order
-        quizQuestions = shuffleArray([...allQuestions]);
-
-        return quizQuestions;
+        return shuffleArray([...allQuestions]);
 
     }
 
-    catch (error) {
+    catch(error){
 
-        console.error("Question Load Error :", error);
+        console.error(
+
+            "Question Load Error :",
+
+            error
+
+        );
 
         return [];
 
@@ -41,18 +54,35 @@ async function loadQuestions(category) {
 
 }
 
-/* =========================
+/* =====================================
    Shuffle Array
-========================= */
+===================================== */
 
-function shuffleArray(array) {
+function shuffleArray(array){
 
-    for (let i = array.length - 1; i > 0; i--) {
+    for(
 
-        const j = Math.floor(Math.random() * (i + 1));
+        let i=array.length-1;
 
-        [array[i], array[j]] =
-        [array[j], array[i]];
+        i>0;
+
+        i--
+
+    ){
+
+        const j=
+
+        Math.floor(
+
+            Math.random()*(i+1)
+
+        );
+
+        [array[i],array[j]]
+
+        =
+
+        [array[j],array[i]];
 
     }
 
@@ -61,76 +91,84 @@ function shuffleArray(array) {
 }
 /* =====================================
    File : questions.js
+   Final Professional Version
    Part : 2
 ===================================== */
 
-let currentQuestion = 0;
-let userAnswers = [];
+/* =====================================
+   Get Question By Index
+===================================== */
 
-/* =========================
-   Get Question
-========================= */
+function getQuestion(index){
 
-function getQuestion() {
+    if(
 
-    return quizQuestions[currentQuestion];
+        index < 0 ||
 
-}
+        index >= allQuestions.length
 
-/* =========================
-   Save Answer
-========================= */
+    ){
 
-function saveAnswer(answer) {
-
-    userAnswers[currentQuestion] = answer;
-
-}
-
-/* =========================
-   Next Question
-========================= */
-
-function nextQuestion() {
-
-    if (currentQuestion < quizQuestions.length - 1) {
-
-        currentQuestion++;
-
-        showQuestion();
+        return null;
 
     }
 
-}
-
-/* =========================
-   Previous Question
-========================= */
-
-function previousQuestion() {
-
-    if (currentQuestion > 0) {
-
-        currentQuestion--;
-
-        showQuestion();
-
-    }
+    return allQuestions[index];
 
 }
 
-/* =========================
-   Reset Quiz
-========================= */
+/* =====================================
+   Get Total Questions
+===================================== */
 
-function resetQuiz() {
+function getTotalQuestions(){
 
-    currentQuestion = 0;
+    return allQuestions.length;
 
-    userAnswers = [];
+}
 
-    quizQuestions = [];
+/* =====================================
+   Check Empty
+===================================== */
+
+function hasQuestions(){
+
+    return allQuestions.length > 0;
+
+}
+
+/* =====================================
+   Get All Questions
+===================================== */
+
+function getAllQuestions(){
+
+    return [...allQuestions];
+
+}
+
+/* =====================================
+   Reset Questions
+===================================== */
+
+function resetQuestions(){
 
     allQuestions = [];
+
+}
+
+/* =====================================
+   Random Number Helper
+===================================== */
+
+function randomNumber(min,max){
+
+    return Math.floor(
+
+        Math.random() *
+
+        (max-min+1)
+
+    ) + min;
 
 }
