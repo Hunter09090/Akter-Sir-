@@ -981,3 +981,44 @@ button:active{
     scale(1.08);
 
 }
+/* Ripple Effect */
+
+button{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.ripple{
+
+    position:absolute;
+
+    width:15px;
+
+    height:15px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.5);
+
+    transform:translate(-50%,-50%) scale(0);
+
+    animation:ripple .6s linear;
+
+    pointer-events:none;
+
+}
+
+@keyframes ripple{
+
+    to{
+
+        transform:translate(-50%,-50%) scale(18);
+
+        opacity:0;
+
+    }
+
+}
