@@ -819,3 +819,165 @@ html{
     transform:scale(.97);
 
 }
+/* =====================================
+   Premium Animation Pack
+   Part 2
+===================================== */
+
+/* Category Stagger */
+
+.category-card:nth-child(1){
+
+    animation-delay:.05s;
+
+}
+
+.category-card:nth-child(2){
+
+    animation-delay:.12s;
+
+}
+
+.category-card:nth-child(3){
+
+    animation-delay:.19s;
+
+}
+
+.category-card:nth-child(4){
+
+    animation-delay:.26s;
+
+}
+
+.category-card:nth-child(5){
+
+    animation-delay:.33s;
+
+}
+
+.category-card:nth-child(6){
+
+    animation-delay:.40s;
+
+}
+
+.category-card:nth-child(7){
+
+    animation-delay:.47s;
+
+}
+
+.category-card:nth-child(8){
+
+    animation-delay:.54s;
+
+}
+
+.category-card:nth-child(9){
+
+    animation-delay:.61s;
+
+}
+
+.category-card:nth-child(10){
+
+    animation-delay:.68s;
+
+}
+
+.category-card:nth-child(11){
+
+    animation-delay:.75s;
+
+}
+
+.category-card:nth-child(12){
+
+    animation-delay:.82s;
+
+}
+
+/* Leaderboard */
+
+.top-three,
+
+.leaderboard{
+
+    animation:
+
+    slideDown .7s ease;
+
+}
+
+/* Buttons */
+
+button{
+
+    transition:
+
+    .25s ease;
+
+}
+
+button:hover{
+
+    transform:
+
+    translateY(-3px);
+
+    box-shadow:
+
+    0 10px 25px
+
+    rgba(0,0,0,.18);
+
+}
+
+button:active{
+
+    transform:
+
+    scale(.96);
+
+}
+
+/* Quiz Card */
+
+.quiz-card{
+
+    animation:
+
+    zoomIn .45s ease;
+
+}
+
+/* Glass Effect */
+
+.category-card,
+
+.quiz-card{
+
+    backdrop-filter:
+
+    blur(12px);
+
+}
+
+/* Smooth Hover */
+
+.category-card img{
+
+    transition:
+
+    .3s;
+
+}
+
+.category-card:hover img{
+
+    transform:
+
+    scale(1.08);
+
+}
