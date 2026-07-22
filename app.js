@@ -285,13 +285,17 @@ function animateCategories(){
 
     const cards =
 
-    document.querySelectorAll(
-
-        ".category-card"
-
-    );
+    document.querySelectorAll(".category-card");
 
     cards.forEach((card,index)=>{
+
+        card.style.animation = "none";
+
+        card.offsetWidth; // Force Reflow
+
+        card.style.animation =
+
+        "fadeUp .6s ease forwards";
 
         card.style.animationDelay =
 
