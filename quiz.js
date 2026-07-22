@@ -3,6 +3,15 @@
    Professional Final Version
    Part : 1
 ===================================== */
+/* ==========================
+   Share Score Data
+========================== */
+
+let finalCorrect = 0;
+
+let finalWrong = 0;
+
+let finalScore = 0;
 
 /* =====================================
    Quiz Variables
