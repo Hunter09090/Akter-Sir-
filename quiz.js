@@ -500,7 +500,10 @@ finalScore = score;
     quizSection.classList.add("hidden");
 
     resultSection.classList.remove("hidden");
-
+document
+    .getElementById("shareBtn")
+    .classList.remove("hidden");
+   
     document.getElementById("correctAnswer").textContent =
     correct;
 
