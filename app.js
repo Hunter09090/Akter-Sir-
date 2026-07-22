@@ -353,7 +353,13 @@ document.addEventListener(
 
     ()=>{
 
-        animateCategories();
+        renderCategories();
+
+        setTimeout(()=>{
+
+            animateCategories();
+
+        },100);
 
     }
 
