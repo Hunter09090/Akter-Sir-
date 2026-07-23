@@ -34,7 +34,8 @@ async function initProfile() {
             user.email || "-";
 
         await loadProfileStats(user.uid);
-
+await loadUserBadge(user.uid);
+       
     });
 
 }
