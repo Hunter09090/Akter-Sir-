@@ -193,5 +193,40 @@ async function loadRecentQuiz(uid) {
 /* =========================
    Start Profile
 ========================= */
+/* =========================
+   Load User Badge
+========================= */
 
+async function loadUserBadge(uid){
+
+    try{
+
+        const doc = await db
+        .collection(USERS)
+        .doc(uid)
+        .get();
+
+        if(!doc.exists) return;
+
+        const data = doc.data();
+
+        const badgeBox =
+        document.getElementById("levelBadge");
+
+        if(badgeBox){
+
+            badgeBox.textContent =
+            data.badge || "🏅 Beginner";
+
+        }
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+}
 initProfile();
