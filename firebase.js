@@ -110,9 +110,7 @@ async function saveUser(user) {
 const userRef = db.collection(USERS).doc(user.uid);
 
 const userDoc = await userRef.get();
-        await db.collection(USERS)
-            .doc(user.uid)
-            .set({
+        await userRef.set({
 
                 uid: user.uid,
                 name: user.displayName || "",
