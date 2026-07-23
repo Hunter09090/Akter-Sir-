@@ -579,6 +579,25 @@ else{
     "level-practice");
 
 }
+   /* ==========================
+   Save Badge
+========================== */
+
+const user = firebase.auth().currentUser;
+
+if (user) {
+
+    await db.collection(USERS)
+
+    .doc(user.uid)
+
+    .update({
+
+        badge: badge.innerHTML
+
+    });
+
+}
     console.log({
 
         correct,
