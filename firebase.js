@@ -107,7 +107,9 @@ async function saveUser(user) {
     if (!user) return;
 
     try {
+const userRef = db.collection(USERS).doc(user.uid);
 
+const userDoc = await userRef.get();
         await db.collection(USERS)
             .doc(user.uid)
             .set({
