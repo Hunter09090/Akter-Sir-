@@ -119,9 +119,13 @@ const userDoc = await userRef.get();
 
                 updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
 
-badge: "🏅 Beginner",
+badge: userDoc.exists
+? (userDoc.data().badge || "🏅 Beginner")
+: "🏅 Beginner",
 
-highestScore: 0
+highestScore: userDoc.exists
+? (userDoc.data().highestScore || 0)
+: 0
             }, {
                 merge: true
             });
