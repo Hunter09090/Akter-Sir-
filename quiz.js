@@ -611,6 +611,33 @@ if (user) {
     });
 
 }
+/* ==========================
+   Save Badge & Highest Score
+========================== */
+
+const user = firebase.auth().currentUser;
+
+if (user) {
+
+    const userRef = db.collection(USERS).doc(user.uid);
+
+    const userDoc = await userRef.get();
+
+    const oldHighest =
+        userDoc.exists
+        ? (userDoc.data().highestScore || 0)
+        : 0;
+
+    await userRef.update({
+
+        badge: badge.innerHTML,
+
+        highestScore: Math.max(oldHighest, score)
+
+    });
+
+}
+
 /* =====================================
    Navigation
 ===================================== */
