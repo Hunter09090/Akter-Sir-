@@ -117,8 +117,11 @@ async function saveUser(user) {
                 email: user.email || "",
                 photo: user.photoURL || "",
 
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
 
+badge: "🏅 Beginner",
+
+highestScore: 0
             }, {
                 merge: true
             });
