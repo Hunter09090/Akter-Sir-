@@ -872,6 +872,14 @@ https://hunter09090.github.io/Akter-Sir-/`;
    Share Button
 ===================================== */
 
-document
-.getElementById("shareBtn")
-.addEventListener("click", shareScore);
+document.addEventListener("DOMContentLoaded", () => {
+
+    const shareBtn = document.getElementById("shareBtn");
+
+    if (shareBtn) {
+
+        shareBtn.addEventListener("click", shareScore);
+
+    }
+
+});
