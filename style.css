@@ -1222,3 +1222,112 @@ button:active{
     transform:scale(.96);
 
 }
+/* =====================================
+   UI Polish - Part 2
+===================================== */
+
+/* Quiz Option */
+
+.option,
+.option-card{
+
+    border:2px solid transparent;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+}
+
+.option:hover,
+.option-card:hover{
+
+    transform:translateX(8px);
+
+    border-color:#4CAF50;
+
+    background:#f5fff5;
+
+}
+
+/* Category Card */
+
+.category-card{
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.category-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:-100%;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(255,255,255,.18);
+
+    transition:.5s;
+
+}
+
+.category-card:hover::after{
+
+    left:100%;
+
+}
+
+/* Leaderboard */
+
+.leader-item{
+
+    padding:12px;
+
+    border-radius:12px;
+
+}
+
+.leader-item:hover{
+
+    background:#f8f9ff;
+
+    transform:scale(1.02);
+
+}
+
+/* Result Card */
+
+.result-card{
+
+    animation:popUp .45s ease;
+
+}
+
+@keyframes popUp{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
