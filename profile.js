@@ -92,7 +92,7 @@ async function loadProfileStats(uid) {
             totalCorrectBox.textContent = totalCorrect;
 
         await loadRecentQuiz(uid);
-await loadUserBadge(uid);
+
     }
 
     catch (error) {
