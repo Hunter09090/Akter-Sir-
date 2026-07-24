@@ -620,6 +620,19 @@ else{
     "level-practice");
 
 }
+   console.log({
+
+    correct,
+
+    wrong,
+
+    skipped,
+
+    score
+
+});
+
+}
   /* =====================================
    Navigation
 ===================================== */
