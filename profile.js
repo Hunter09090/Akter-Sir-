@@ -227,3 +227,8 @@ async function loadUserBadge(uid){
     }
 
 }
+/* =========================
+   Start Profile
+========================= */
+
+initProfile();
