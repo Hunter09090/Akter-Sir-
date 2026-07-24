@@ -596,7 +596,7 @@ if (user) {
         badge: badge.innerHTML
 
     });
-*/
+
 }
     console.log({
 
@@ -611,7 +611,7 @@ if (user) {
     });
 
 }
-
+*/
 
 /* =====================================
    Navigation
