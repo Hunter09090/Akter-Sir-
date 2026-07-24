@@ -194,7 +194,7 @@ async function loadRecentQuiz(uid) {
    Start Profile
 ========================= */
 /* =========================
-   Load User Badge
+   Load Badge
 ========================= */
 
 async function loadUserBadge(uid){
@@ -202,21 +202,19 @@ async function loadUserBadge(uid){
     try{
 
         const doc = await db
-        .collection(USERS)
+        .collection("users")
         .doc(uid)
         .get();
 
         if(!doc.exists) return;
 
-        const data = doc.data();
-
-        const badgeBox =
+        const badge =
         document.getElementById("levelBadge");
 
-        if(badgeBox){
+        if(badge){
 
-            badgeBox.textContent =
-            data.badge || "🏅 Beginner";
+            badge.textContent =
+            doc.data().badge || "🏅 Beginner";
 
         }
 
@@ -229,4 +227,3 @@ async function loadUserBadge(uid){
     }
 
 }
-initProfile();
