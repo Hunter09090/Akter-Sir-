@@ -465,6 +465,47 @@ async function finishQuiz(){
     });
 
     const score = correct;
+   /* ==========================
+   Save Final Result
+========================== */
+
+finalCorrect = correct;
+
+finalWrong = wrong;
+
+finalScore = score;
+
+try {
+
+    await saveLeaderboard({
+
+        score,
+
+        correct,
+
+        wrong,
+
+        time: 600 - quizTime
+
+    });
+
+}
+
+catch(error){
+
+    console.error(error);
+
+}
+
+quizSection.classList.add("hidden");
+
+resultSection.classList.remove("hidden");
+
+document.getElementById("correctAnswer").textContent = correct;
+
+document.getElementById("wrongAnswer").textContent = wrong;
+
+document.getElementById("finalScore").textContent = score;
 /* ==========================
    Save Final Result
 ========================== */
