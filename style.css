@@ -1331,3 +1331,112 @@ button:active{
     }
 
 }
+/* =====================================
+   UI Polish - Part 3
+===================================== */
+
+/* Smooth Page Animation */
+
+body{
+
+    animation:fadePage .5s ease;
+
+}
+
+@keyframes fadePage{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(12px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* Image Hover */
+
+img{
+
+    transition:.3s;
+
+}
+
+img:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* Input & Select */
+
+input,
+select,
+textarea{
+
+    transition:.25s;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    transform:scale(1.02);
+
+    box-shadow:0 0 10px rgba(76,175,80,.35);
+
+    outline:none;
+
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f2f2f2;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#4CAF50;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#388E3C;
+
+}
+
+/* Profile Stats */
+
+.stat-box{
+
+    cursor:pointer;
+
+}
+
+.stat-box:hover{
+
+    transform:translateY(-6px) scale(1.03);
+
+}
