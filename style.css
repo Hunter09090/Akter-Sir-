@@ -1165,3 +1165,60 @@ button{
     z-index:9999;
 
 }
+/* =====================================
+   UI Polish - Part 1
+===================================== */
+
+/* Smooth Transition */
+
+*{
+    transition: all .25s ease;
+}
+
+/* Card Hover */
+
+.profile-card,
+.result-card,
+.stat-box,
+.category-card,
+.leader-item{
+
+    border-radius:16px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+
+}
+
+.profile-card:hover,
+.result-card:hover,
+.stat-box:hover,
+.category-card:hover,
+.leader-item:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 12px 28px rgba(0,0,0,.25);
+
+}
+
+/* Button Hover */
+
+button{
+
+    transition:.25s;
+
+}
+
+button:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+}
+
+button:active{
+
+    transform:scale(.96);
+
+}
