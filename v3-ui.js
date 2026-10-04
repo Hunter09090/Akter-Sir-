@@ -14,15 +14,13 @@
     const original=window.finishQuiz;
     if(typeof original==='function'&&!original.__v3Wrapped){
       const wrapped=async function(){
-        const before=window.quizFinished;await original.apply(this,arguments);
-        if(!before&&window.quizFinished&&window.quizAnalytics){
-          quizAnalytics.record({category:window.selectedCategory||'General',score:window.finalScore||0,correct:window.finalCorrect||0,wrong:window.finalWrong||0,skipped:Math.max(0,(window.quizQuestions?.length||0)-(window.finalCorrect||0)-(window.finalWrong||0)),percentage:window.quizQuestions?.length?Math.round((window.finalScore||0)/window.quizQuestions.length*100):0});
-          render();
-        }
+        const before=localStorage.getItem('quizLastResult');
+        await original.apply(this,arguments);
+        const raw=localStorage.getItem('quizLastResult');
+        if(raw&&raw!==before&&window.quizAnalytics){try{quizAnalytics.record(JSON.parse(raw));render()}catch{}}
       };wrapped.__v3Wrapped=true;window.finishQuiz=wrapped;
     }
     render();
   }
-  document.addEventListener('DOMContentLoaded',()=>setTimeout(wire,100));
-  window.addEventListener('load',render);
+  document.addEventListener('DOMContentLoaded',()=>setTimeout(wire,150));window.addEventListener('load',render);
 })();
