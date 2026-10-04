@@ -1,44 +1,21 @@
-
-<!-- ===========================
-File: index.html
-Quiz Of AKTER SIR — V2
-=========================== -->
+<!-- Quiz Of AKTER SIR — V3 Premium -->
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz Of AKTER SIR</title>
-<meta name="description" content="Quiz Of AKTER SIR - Free Online Quiz Website">
-<meta name="keywords" content="Quiz, MCQ, Bangladesh, Islam, ICT, GK">
-<meta name="author" content="AKTER SIR">
-<meta name="theme-color" content="#0f172a">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="quiz-v2.css">
-<script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
-<script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
-<script defer src="firebase-config.js"></script>
-<script defer src="firebase.js"></script>
-<script defer src="utils.js"></script>
-<script defer src="questions.js"></script>
-<script defer src="quiz.js"></script>
-<script defer src="app.js"></script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Of AKTER SIR</title><meta name="description" content="Quiz Of AKTER SIR - Free Online Quiz Website"><meta name="keywords" content="Quiz, MCQ, Bangladesh, Islam, ICT, GK"><meta name="author" content="AKTER SIR"><meta name="theme-color" content="#0f172a">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="quiz-v2.css"><link rel="stylesheet" href="quiz-v3.css">
+<script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script><script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script><script defer src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script defer src="firebase-config.js"></script><script defer src="firebase.js"></script><script defer src="utils.js"></script><script defer src="questions.js"></script><script defer src="v3-analytics.js"></script><script defer src="quiz.js"></script><script defer src="v3-ui.js"></script><script defer src="app.js"></script>
 </head>
 <body>
 <section id="intro-screen"><div class="intro-box"><div class="intro-logo">🎓</div><h1>Quiz Of AKTER SIR</h1><p>Learn • Play • Improve</p></div></section>
-<div id="app" class="hidden">
-<div id="header"></div>
-<main>
+<div id="app" class="hidden"><div id="header"></div><main>
 <section id="top-three"><h2>🏆 This Week Top 3</h2><div id="leaderboardList" class="leaderboard-list"><p>Loading...</p></div></section>
 <section id="category-section"><h2>📚 Quiz Categories</h2><div id="categoryContainer"></div></section>
+<section id="analytics-section" class="v3-dashboard" aria-label="Quiz analytics"><div class="v3-head"><div><span class="v3-kicker">QUIZ V3</span><h2>📊 My Learning Dashboard</h2><p>আপনার quiz performance, streak এবং category progress এক জায়গায়।</p></div><button id="clearHistoryBtn" type="button" class="v3-ghost">Clear History</button></div><div class="v3-stats"><article><span>🎮 Quizzes</span><strong id="v3Total">0</strong></article><article><span>🏆 Best Score</span><strong id="v3Best">0</strong></article><article><span>📈 Average</span><strong id="v3Average">0</strong></article><article><span>🔥 Streak</span><strong id="v3Streak">0 days</strong></article></div><div class="v3-grid"><div class="v3-panel"><h3>📚 Category Performance</h3><div id="categoryPerformance" class="v3-list"><p>এখনো কোনো quiz history নেই।</p></div></div><div class="v3-panel"><h3>🕘 Recent Quizzes</h3><div id="quizHistoryList" class="v3-list"><p>আপনার completed quiz এখানে দেখা যাবে।</p></div></div></div></section>
 <section id="quiz-section" class="hidden"><div class="quiz-card"><div class="quiz-top"><h2 id="quizCategory">Category</h2><div id="quizTimer">⏱️ 00:00</div></div><h3 id="questionText">Loading Question...</h3><div id="optionContainer"></div><div id="answerStatus" class="answer-status hidden">Waiting...</div><div class="quiz-buttons"><button id="prevBtn" type="button">⬅ Previous</button><button id="nextBtn" type="button">Next ➜</button><button id="finishBtn" type="button">✅ Finish Quiz</button></div></div></section>
 <section id="result-section" class="hidden"><div class="result-card"><h2>🎉 Quiz Result</h2><div class="result-info"><p>Correct : <span id="correctAnswer">0</span></p><p>Wrong : <span id="wrongAnswer">0</span></p><p>Final Score : <span id="finalScore">0</span></p><div id="levelBadge" class="level-badge">🏅 Beginner</div></div><div class="result-buttons"><button id="playAgainBtn" type="button">🔄 Play Again</button><button id="homeBtn" type="button">🏠 Home</button><button id="shareBtn" type="button">📤 Share Score</button></div></div></section>
-</main>
-<div id="footer"></div>
-</div>
-<audio id="correctSound" preload="auto"><source src="correct.mp3" type="audio/mpeg"></audio>
-<audio id="wrongSound" preload="auto"><source src="wrong.mp3" type="audio/mpeg"></audio>
-<canvas id="confettiCanvas" aria-hidden="true"></canvas>
-</body>
-</html>
+</main><div id="footer"></div></div>
+<audio id="correctSound" preload="auto"><source src="correct.mp3" type="audio/mpeg"></audio><audio id="wrongSound" preload="auto"><source src="wrong.mp3" type="audio/mpeg"></audio><canvas id="confettiCanvas" aria-hidden="true"></canvas>
+</body></html>
