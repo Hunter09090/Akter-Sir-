@@ -1,271 +1,115 @@
 /* =====================================
-   File : firebase.js
-   Part : 1
+   Firebase / Auth / Leaderboard
+   Quiz V2 — stable release
 ===================================== */
 
-// Google Authentication Provider
 const provider = new firebase.auth.GoogleAuthProvider();
-
-// Collection Names
 const USERS = "users";
 const QUESTIONS = "questions";
 const LEADERBOARD = "leaderboard";
-
-// Current User
 let currentUser = null;
 
-/* =========================
-   Google Login
-========================= */
-
-async function login() {
-
-   
-    try {
-
-        const result =
-            await auth.signInWithPopup(provider);
-
+async function login(){
+    try{
+        const result = await auth.signInWithPopup(provider);
         currentUser = result.user;
-
         await saveUser(currentUser);
-
         updateUserUI(currentUser);
-
-        loadTopThreeUI();
-
+        await loadTopThreeUI();
+    }catch(error){
+        console.error("Login Error:", error);
+        alert("Login failed. Please try again.");
     }
-
-    catch (error) {
-
-        console.error("Login Error :", error);
-
-        alert(error.message);
-
-    }
-
 }
 
-/* =========================
-   Logout
-========================= */
-
-async function logout() {
-
-    try {
-
+async function logout(){
+    try{
         await auth.signOut();
-
         currentUser = null;
-
         updateUserUI(null);
-
-        loadTopThreeUI();
-
+        await loadTopThreeUI();
+    }catch(error){
+        console.error("Logout Error:", error);
     }
-
-    catch (error) {
-
-        console.error("Logout Error :", error);
-
-    }
-
 }
 
-/* =========================
-   Auth State
-========================= */
-
-auth.onAuthStateChanged(async (user) => {
-
+auth.onAuthStateChanged(async user=>{
     currentUser = user;
-
-    if (user) {
-
-        await saveUser(user);
-
-    }
-
-    if (typeof updateUserUI === "function") {
-
-        updateUserUI(user);
-
-    }
-
+    if(user) await saveUser(user);
+    if(typeof updateUserUI === "function") updateUserUI(user);
 });
-/* =====================================
-   File : firebase.js
-   Part : 2
-===================================== */
 
-/* =========================
-   Save User
-========================= */
-
-async function saveUser(user) {
-
-    if (!user) return;
-
-    try {
-const userRef = db.collection(USERS).doc(user.uid);
-
-const userDoc = await userRef.get();
+async function saveUser(user){
+    if(!user) return;
+    try{
+        const userRef = db.collection(USERS).doc(user.uid);
+        const snap = await userRef.get();
+        const old = snap.exists ? snap.data() : {};
         await userRef.set({
-
-                uid: user.uid,
-                name: user.displayName || "",
-                email: user.email || "",
-                photo: user.photoURL || "",
-
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-
-badge: userDoc.exists
-? (userDoc.data().badge || "🏅 Beginner")
-: "🏅 Beginner",
-
-highestScore: userDoc.exists
-? (userDoc.data().highestScore || 0)
-: 0
-            }, {
-                merge: true
-            });
-
-    } catch (error) {
-
-        console.error("Save User Error:", error);
-
+            uid:user.uid,
+            name:user.displayName || "Guest",
+            email:user.email || "",
+            photo:user.photoURL || "",
+            updatedAt:firebase.firestore.FieldValue.serverTimestamp(),
+            badge:old.badge || "🏅 Beginner",
+            highestScore:Number(old.highestScore || 0)
+        },{merge:true});
+    }catch(error){
+        console.error("Save User Error:",error);
     }
-
 }
 
-/* =========================
-   Leaderboard
-========================= */
-
-async function saveLeaderboard(data) {
-
-    try {
-
+async function saveLeaderboard(data){
+    if(!data || !Number.isFinite(Number(data.score))) return;
+    try{
         await db.collection(LEADERBOARD).add({
-
-            uid: currentUser?.uid || "",
-
-            name: currentUser?.displayName || "Guest",
-
-            score: data.score,
-
-            correct: data.correct,
-
-            wrong: data.wrong,
-
-            time: data.time,
-
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-
+            uid:currentUser?.uid || "guest",
+            name:currentUser?.displayName || "Guest",
+            score:Number(data.score),
+            correct:Number(data.correct || 0),
+            wrong:Number(data.wrong || 0),
+            skipped:Number(data.skipped || 0),
+            time:Number(data.time || 0),
+            category:data.category || selectedCategory || "General",
+            createdAt:firebase.firestore.FieldValue.serverTimestamp()
         });
-
-    } catch (error) {
-
-        console.error("Leaderboard Error:", error);
-
+    }catch(error){
+        console.error("Leaderboard Error:",error);
     }
-
 }
 
-/* =========================
-   Load Top 3
-========================= */
-
-async function loadTopThree() {
-
-    try {
-
-        const snapshot = await db
-            .collection(LEADERBOARD)
-            .orderBy("score", "desc")
-            .limit(3)
-            .get();
-
-        return snapshot.docs.map(doc => doc.data());
-
-    } catch (error) {
-
-        console.error(error);
-
-        box.innerHTML = error.message;
-
-
+async function loadTopThree(){
+    try{
+        const snapshot = await db.collection(LEADERBOARD)
+            .orderBy("score","desc").limit(3).get();
+        return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+    }catch(error){
+        console.error("Load Top Three Error:",error);
+        return [];
     }
-
-}
-/* ==========================
-   Top 3 Leaderboard
-========================== */
-
-async function loadTopThreeUI() {
-
-   console.log("Leaderboard Function Running");
-   
-    const box = document.getElementById("leaderboardList");
-
-    if (!box) return;
-
-    box.innerHTML = "<p>Loading...</p>";
-
-    try {
-
-        const snapshot = await db
-            .collection("leaderboard")
-            .orderBy("score", "desc")
-            .limit(3)
-            .get();
-
-        if (snapshot.empty) {
-
-            box.innerHTML = "<p>No Score Yet.</p>";
-
-            return;
-
-        }
-
-        box.innerHTML = "";
-
-        snapshot.forEach((doc, index) => {
-
-            const item = doc.data();
-
-            box.innerHTML += `
-
-            <div class="leader-item">
-
-                <span class="leader-rank">
-                    #${index + 1}
-                </span>
-
-                <span class="leader-name">
-                    ${item.name}
-                </span>
-
-                <span class="leader-score">
-                    ${item.score}
-                </span>
-
-            </div>
-
-            `;
-
-        });
-
-    }
-
-    catch (error) {
-
-    console.log(error);
-
-    alert("Code: " + error.code);
-
-    alert("Message: " + error.message);
-
 }
 
+async function loadTopThreeUI(){
+    const box=document.getElementById("leaderboardList");
+    if(!box) return;
+    box.innerHTML='<p class="leader-loading">Loading leaderboard…</p>';
+    const players=await loadTopThree();
+    if(!players.length){
+        box.innerHTML='<p class="leader-empty">🏆 No scores yet. Be the first!</p>';
+        return;
+    }
+    const medals=["🥇","🥈","🥉"];
+    box.innerHTML=players.map((player,index)=>`
+        <div class="leader-item">
+            <span class="leader-rank">${medals[index] || `#${index+1}`}</span>
+            <span class="leader-name">${escapeHTML(player.name || "Guest")}</span>
+            <span class="leader-score">${Number(player.score || 0)}</span>
+        </div>
+    `).join("");
+}
+
+function escapeHTML(value){
+    return String(value).replace(/[&<>'"]/g,char=>({
+        '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'
+    }[char]));
 }
